@@ -43,6 +43,44 @@
       color: #e63946;
     }
 
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-login {
+      color: #1a1a1a;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .btn-login:hover {
+      color: #e63946;
+      background-color: #f8f9fa;
+    }
+
+    .btn-signup {
+      background-color: #e63946;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      border: 1px solid #e63946;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn-signup:hover {
+      background-color: #d62828;
+      border-color: #d62828;
+    }
+
     /* Main Container */
     .container {
       max-width: 1200px;
@@ -185,6 +223,10 @@
 
   <header>
     <div class="logo">Nokva<span>.</span> Marketplace</div>
+    <div class="header-actions">
+      <a href="pages/login.html" class="btn-login">Log In</a>
+      <a href="pages/signup.html" class="btn-signup">Sign Up</a>
+    </div>
   </header>
 
   <main class="container">

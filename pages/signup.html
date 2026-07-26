@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Nokva Marketplace</title>
+  <style>
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: #f8f9fa;
+      color: #2b2b2b;
+      line-height: 1.5;
+    }
+
+    /* Header & Navigation */
+    header {
+      background-color: #ffffff;
+      border-bottom: 1px solid #eaeaea;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: #e63946;
+    }
+
+    .back-link {
+      color: #666;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .back-link:hover {
+      color: #e63946;
+    }
+
+    /* Form Container */
+    .container {
+      max-width: 480px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .form-card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .form-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #111;
+      text-align: center;
+    }
+
+    .form-subtitle {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      background-color: #fafafa;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #e63946;
+      background-color: #fff;
+      box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15);
+    }
+
+    /* Submit Button */
+    .btn-submit {
+      width: 100%;
+      background-color: #e63946;
+      color: #ffffff;
+      border: none;
+      padding: 0.9rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: #d62828;
+    }
+
+    .btn-submit:active {
+      transform: scale(0.99);
+    }
+
+    /* Extra links inside card */
+    .form-footer {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: #666;
+    }
+
+    .form-footer a {
+      color: #e63946;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .form-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #888;
+      font-size: 0.85rem;
+      border-top: 1px solid #eaeaea;
+      margin-top: 3rem;
+    }
+  </style>
+  <script>
+    function validateAndSubmit(event) {
+      event.preventDefault();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      alert('Sign up successful!');
+      window.location.href = 'login.html';
+    }
+  </script>
+</head>
+<body>
+
+  <header>
+    <a href="../index.html" class="logo">Nokva<span>.</span> Marketplace</a>
+    <a href="../index.html" class="back-link">&larr; Back to Shop</a>
+  </header>
+
+  <main class="container">
+    <div class="form-card">
+      <h1 class="form-title">Create Account</h1>
+      <p class="form-subtitle">Sign up to get started with Nokva Marketplace.</p>
+
+      <form action="#" method="POST" onsubmit="validateAndSubmit(event)">
+
+        <div class="form-group">
+          <label for="fullname">Full Name</label>
+          <input type="text" id="fullname" name="fullname" placeholder="John Doe" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="john@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="••••••••" required>
+        </div>
+
+        <div class="form-group">
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" id="confirm-password" name="confirm-password" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="btn-submit">Sign Up</button>
+
+      </form>
+
+      <div class="form-footer">
+        Already have an account? <a href="login.html">Log In</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; Nokva Marketplace. Hosted on GitHub Pages.</p>
+  </footer>
+
+</body>
+</html>
