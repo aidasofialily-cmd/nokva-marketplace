@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Food - Nokva Marketplace</title>
+  <style>
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: #f8f9fa;
+      color: #2b2b2b;
+      line-height: 1.5;
+    }
+
+    /* Header & Navigation */
+    header {
+      background-color: #ffffff;
+      border-bottom: 1px solid #eaeaea;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: #e63946;
+    }
+
+    .back-link {
+      color: #666;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .back-link:hover {
+      color: #e63946;
+    }
+
+    /* Form Container */
+    .container {
+      max-width: 650px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .form-card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .form-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #111;
+    }
+
+    .form-subtitle {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      background-color: #fafafa;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #e63946;
+      background-color: #fff;
+      box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 500px) {
+      .row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Radio / Checkbox Styling for Options */
+    .option-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.25rem;
+    }
+
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: normal;
+      cursor: pointer;
+    }
+
+    /* Submit Button */
+    .btn-submit {
+      width: 100%;
+      background-color: #e63946;
+      color: #ffffff;
+      border: none;
+      padding: 0.9rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: #d62828;
+    }
+
+    .btn-submit:active {
+      transform: scale(0.99);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #888;
+      font-size: 0.85rem;
+      border-top: 1px solid #eaeaea;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="../index.html" class="logo">Nokva<span>.</span> Marketplace</a>
+    <a href="../index.html" class="back-link">&larr; Back to Shop</a>
+  </header>
+
+  <main class="container">
+    <div class="form-card">
+      <h1 class="form-title">Place Your Order</h1>
+      <p class="form-subtitle">Fill in the details below to complete your food order.</p>
+
+      <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Order submitted successfully!');">
+        
+        <!-- Food Selection (By Item Name) -->
+        <div class="form-group">
+          <label for="food-item">Select Food Item</label>
+          <select id="food-item" name="food-item" required>
+            <option value="" disabled selected>-- Choose an item --</option>
+            <option value="Artisan Cheeseburger">Artisan Cheeseburger ($12.50)</option>
+            <option value="Neapolitan Pizza">Neapolitan Pizza ($16.00)</option>
+            <option value="Avocado Grain Bowl">Avocado Grain Bowl ($11.00)</option>
+            <option value="Tonkotsu Ramen">Tonkotsu Ramen ($14.50)</option>
+            <option value="Assorted Glazed Donuts">Assorted Glazed Donuts ($8.00)</option>
+            <option value="Matcha Cold Brew">Matcha Cold Brew ($6.50)</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" name="quantity" min="1" max="20" value="1" required>
+          </div>
+          <div class="form-group">
+            <label>Order Type</label>
+            <div class="option-group">
+              <label class="option-label">
+                <input type="radio" name="order-type" value="delivery" checked> Delivery
+              </label>
+              <label class="option-label">
+                <input type="radio" name="order-type" value="pickup"> Pickup
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 1.5rem 0;">
+
+        <!-- Customer Information -->
+        <div class="form-group">
+          <label for="full-name">Full Name</label>
+          <input type="text" id="full-name" name="full-name" placeholder="John Doe" required>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="john@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Delivery / Pickup Address</label>
+          <textarea id="address" name="address" rows="3" placeholder="Enter full address..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="instructions">Special Instructions (Optional)</label>
+          <textarea id="instructions" name="instructions" rows="2" placeholder="e.g., Extra sauce, no onions, leave at front door"></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Confirm Order</button>
+
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; Nokva Marketplace. Hosted on GitHub Pages.</p>
+  </footer>
+
+</body>
+</html>
