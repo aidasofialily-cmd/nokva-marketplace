@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nokva Marketplace - Food Shop</title>
+  <style>
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: #f8f9fa;
+      color: #2b2b2b;
+      line-height: 1.5;
+    }
+
+    /* Header & Navigation */
+    header {
+      background-color: #ffffff;
+      border-bottom: 1px solid #eaeaea;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: #e63946;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .shop-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+
+    /* Grid Layout */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.75rem;
+    }
+
+    /* Food Image Card */
+    .food-card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .food-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Card Media Area */
+    .card-image-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 75%; /* 4:3 Aspect Ratio */
+      overflow: hidden;
+      background-color: #f0f0f0;
+    }
+
+    .card-image-wrapper img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .food-card:hover .card-image-wrapper img {
+      transform: scale(1.05);
+    }
+
+    /* Tag overlay */
+    .badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background-color: rgba(0, 0, 0, 0.65);
+      color: #ffffff;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
+    }
+
+    /* Card Details */
+    .card-content {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .food-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: #111;
+    }
+
+    .food-description {
+      font-size: 0.875rem;
+      color: #666;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .price {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #e63946;
+    }
+
+    .btn-add {
+      background-color: #1a1a1a;
+      color: #ffffff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-add:hover {
+      background-color: #e63946;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #888;
+      font-size: 0.85rem;
+      border-top: 1px solid #eaeaea;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Nokva<span>.</span> Marketplace</div>
+  </header>
+
+  <main class="container">
+    <h1 class="shop-title">Fresh Food & Delicacies</h1>
+
+    <div class="product-grid">
+
+      <!-- Card 1 -->
+      <article class="food-card">
+        <div class="card-image-wrapper">
+          <span class="badge">Fresh</span>
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="Artisan Artisan Cheeseburger">
+        </div>
+        <div class="card-content">
+          <h2 class="food-name">Artisan Cheeseburger</h2>
+          <p class="food-description">Double beef patty with melted cheddar, fresh lettuce, and signature sauce on a brioche bun.</p>
+          <div class="card-footer">
+            <span class="price">$12.50</span>
+            <button class="btn-add">Order Now</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="food-card">
+        <div class="card-image-wrapper">
+          <span class="badge">Popular</span>
+          <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80" alt="Woodfired Neapolitan Pizza">
+        </div>
+        <div class="card-content">
+          <h2 class="food-name">Neapolitan Pizza</h2>
+          <p class="food-description">Classic stone-baked crust topped with San Marzano tomatoes, fresh mozzarella, and basil.</p>
+          <div class="card-footer">
+            <span class="price">$16.00</span>
+            <button class="btn-add">Order Now</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="food-card">
+        <div class="card-image-wrapper">
+          <span class="badge">Healthy</span>
+          <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Avocado Grain Bowl">
+        </div>
+        <div class="card-content">
+          <h2 class="food-name">Avocado Grain Bowl</h2>
+          <p class="food-description">Quinoa, sliced avocado, roasted chickpeas, cherry tomatoes, and tahini dressing.</p>
+          <div class="card-footer">
+            <span class="price">$11.00</span>
+            <button class="btn-add">Order Now</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="food-card">
+        <div class="card-image-wrapper">
+          <span class="badge">Chef's Choice</span>
+          <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80" alt="Spicy Ramen Bowl">
+        </div>
+        <div class="card-content">
+          <h2 class="food-name">Tonkotsu Ramen</h2>
+          <p class="food-description">Rich pork bone broth, hand-crafted noodles, soft-boiled egg, tender chashu, and scallions.</p>
+          <div class="card-footer">
+            <span class="price">$14.50</span>
+            <button class="btn-add">Order Now</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="food-card">
+        <div class="card-image-wrapper">
+          <span class="badge">Dessert</span>
+          <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80" alt="Glazed Donuts">
+        </div>
+        <div class="card-content">
+          <h2 class="food-name">Assorted Glazed Donuts</h2>
+          <p class="food-description">Selection of handmade artisanal donuts topped with custom glazes and sprinkles.</p>
+          <div class="card-footer">
+            <span class="price">$8.00</span>
+            <button class="btn-add">Order Now</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 6 -->
+      <article class="food-card">
+        <div class="card-image-wrapper">
+          <span class="badge">Beverage</span>
+          <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80" alt="Iced Coffee">
+        </div>
+        <div class="card-content">
+          <h2 class="food-name">Matcha Cold Brew</h2>
+          <p class="food-description">Premium Japanese matcha layered over cold brew coffee and sweetened oat milk.</p>
+          <div class="card-footer">
+            <span class="price">$6.50</span>
+            <button class="btn-add">Order Now</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; Nokva Marketplace. Hosted on GitHub Pages.</p>
+  </footer>
+
+</body>
+</html>
