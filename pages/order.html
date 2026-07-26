@@ -266,5 +266,26 @@
     <p>&copy; Nokva Marketplace. Hosted on GitHub Pages.</p>
   </footer>
 
+  <script>
+    // Auto-select food item based on query parameter
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const item = urlParams.get('item');
+      if (item) {
+        const selectEl = document.getElementById('food-item');
+        if (selectEl) {
+          // Normalize matching: trim and case-insensitive check if exact match not found
+          const normalizedItem = item.trim().toLowerCase();
+          for (let option of selectEl.options) {
+            if (option.value === item || option.value.trim().toLowerCase() === normalizedItem) {
+              selectEl.value = option.value;
+              break;
+            }
+          }
+        }
+      }
+    });
+  </script>
+
 </body>
 </html>
