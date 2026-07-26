@@ -161,10 +161,13 @@
       font-weight: 500;
       cursor: pointer;
       transition: background-color 0.2s ease;
+      text-decoration: none;
+      display: inline-block;
     }
 
     .btn-add:hover {
       background-color: #e63946;
+      color: #ffffff;
     }
 
     /* Footer */
@@ -193,14 +196,14 @@
       <article class="food-card">
         <div class="card-image-wrapper">
           <span class="badge">Fresh</span>
-          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="Artisan Artisan Cheeseburger">
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="Artisan Cheeseburger">
         </div>
         <div class="card-content">
           <h2 class="food-name">Artisan Cheeseburger</h2>
           <p class="food-description">Double beef patty with melted cheddar, fresh lettuce, and signature sauce on a brioche bun.</p>
           <div class="card-footer">
             <span class="price">$12.50</span>
-            <button class="btn-add">Order Now <a href="pages/order.html</button>
+            <a href="pages/order.html?item=Artisan Cheeseburger" class="btn-add">Order Now</a>
           </div>
         </div>
       </article>
@@ -216,7 +219,7 @@
           <p class="food-description">Classic stone-baked crust topped with San Marzano tomatoes, fresh mozzarella, and basil.</p>
           <div class="card-footer">
             <span class="price">$16.00</span>
-            <button class="btn-add">Order Now</button>
+            <a href="pages/order.html?item=Neapolitan Pizza" class="btn-add">Order Now</a>
           </div>
         </div>
       </article>
@@ -232,7 +235,7 @@
           <p class="food-description">Quinoa, sliced avocado, roasted chickpeas, cherry tomatoes, and tahini dressing.</p>
           <div class="card-footer">
             <span class="price">$11.00</span>
-            <button class="btn-add">Order Now</button>
+            <a href="pages/order.html?item=Avocado Grain Bowl" class="btn-add">Order Now</a>
           </div>
         </div>
       </article>
@@ -248,7 +251,7 @@
           <p class="food-description">Rich pork bone broth, hand-crafted noodles, soft-boiled egg, tender chashu, and scallions.</p>
           <div class="card-footer">
             <span class="price">$14.50</span>
-            <button class="btn-add">Order Now</button>
+            <a href="pages/order.html?item=Tonkotsu Ramen" class="btn-add">Order Now</a>
           </div>
         </div>
       </article>
@@ -264,7 +267,7 @@
           <p class="food-description">Selection of handmade artisanal donuts topped with custom glazes and sprinkles.</p>
           <div class="card-footer">
             <span class="price">$8.00</span>
-            <button class="btn-add">Order Now</button>
+            <a href="pages/order.html?item=Assorted Glazed Donuts" class="btn-add">Order Now</a>
           </div>
         </div>
       </article>
@@ -280,7 +283,7 @@
           <p class="food-description">Premium Japanese matcha layered over cold brew coffee and sweetened oat milk.</p>
           <div class="card-footer">
             <span class="price">$6.50</span>
-            <button class="btn-add">Order Now</button>
+            <a href="pages/order.html?item=Matcha Cold Brew" class="btn-add">Order Now</a>
           </div>
         </div>
       </article>
