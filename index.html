@@ -223,7 +223,7 @@
 
   <header>
     <div class="logo">Nokva<span>.</span> Marketplace</div>
-    <div class="header-actions">
+    <div class="header-actions" id="header-actions">
       <a href="pages/login.html" class="btn-login">Log In</a>
       <a href="pages/signup.html" class="btn-signup">Sign Up</a>
     </div>
@@ -337,5 +337,80 @@
     <p>&copy; Nokva Marketplace. Hosted on GitHub Pages.</p>
   </footer>
 
+  <!-- Notification / Message area for signed-out users -->
+  <style>
+    .signup-banner {
+      background-color: #ffe3e3;
+      border: 1px solid #ffb3b3;
+      color: #d62828;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1rem;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .signup-banner a {
+      color: #e63946;
+      text-decoration: underline;
+      margin-left: 0.5rem;
+    }
+
+    .signup-banner a:hover {
+      color: #d62828;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      const headerActions = document.getElementById('header-actions');
+
+      if (isLoggedIn) {
+        // Replace header actions with Log Out button
+        headerActions.innerHTML = `
+          <button id="btn-logout" class="btn-login" style="background: none; border: none; cursor: pointer; font-family: inherit;">Log Out</button>
+        `;
+        document.getElementById('btn-logout').addEventListener('click', () => {
+          localStorage.removeItem('isLoggedIn');
+          window.location.reload();
+        });
+      } else {
+        // Signed-out behavior for "Order Now" buttons
+        const orderButtons = document.querySelectorAll('.btn-add');
+        orderButtons.forEach(button => {
+          button.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // Check if there's already a banner, if so, remove it first to avoid duplicates
+            const existingBanner = document.querySelector('.signup-banner');
+            if (existingBanner) {
+              existingBanner.remove();
+            }
+
+            // Create new banner message
+            const banner = document.createElement('div');
+            banner.className = 'signup-banner';
+            banner.innerHTML = `Please <a href="pages/signup.html">Sign up for an account</a> to place an order.`;
+
+            // Insert at the top of the main container
+            const container = document.querySelector('.container');
+            if (container) {
+              container.insertBefore(banner, container.firstChild);
+              // Scroll to the top of the page so the banner is visible
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          });
+        });
+      }
+    });
+  </script>
 </body>
 </html>
