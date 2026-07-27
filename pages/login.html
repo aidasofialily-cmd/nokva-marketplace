@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Log In - Nokva Marketplace</title>
+  <script>
+    // If user is already logged in, redirect them to index or let them log out
+  </script>
   <style>
     /* Reset & Base Styles */
     * {
@@ -181,7 +184,7 @@
       <h1 class="form-title">Welcome Back</h1>
       <p class="form-subtitle">Log in to manage your orders and profile.</p>
 
-      <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Logged in successfully!'); window.location.href='../index.html';">
+      <form action="#" method="POST" onsubmit="event.preventDefault(); localStorage.setItem('isLoggedIn', 'true'); alert('Logged in successfully!'); window.location.href='../index.html';">
 
         <div class="form-group">
           <label for="email">Email Address</label>
