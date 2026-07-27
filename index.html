@@ -208,6 +208,70 @@
       color: #ffffff;
     }
 
+    /* Bookmark Toggle Button */
+    .btn-bookmark-toggle {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background-color: rgba(255, 255, 255, 0.85);
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: none; /* Only show when logged in */
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      transition: background-color 0.2s, transform 0.2s;
+      z-index: 10;
+    }
+
+    .btn-bookmark-toggle:hover {
+      background-color: #ffffff;
+      transform: scale(1.05);
+    }
+
+    .btn-bookmark-toggle svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: #666;
+      stroke-width: 2;
+      transition: fill 0.2s, stroke 0.2s;
+    }
+
+    .btn-bookmark-toggle.bookmarked svg {
+      fill: #e63946;
+      stroke: #e63946;
+    }
+
+    .btn-bookmarks {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #1a1a1a;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .btn-bookmarks:hover {
+      color: #e63946;
+      background-color: #f8f9fa;
+    }
+
+    .btn-bookmarks svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
     /* Footer */
     footer {
       text-align: center;
@@ -239,6 +303,11 @@
         <div class="card-image-wrapper">
           <span class="badge">Fresh</span>
           <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="Artisan Cheeseburger">
+          <button class="btn-bookmark-toggle" aria-label="Bookmark" data-name="Artisan Cheeseburger">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </button>
         </div>
         <div class="card-content">
           <h2 class="food-name">Artisan Cheeseburger</h2>
@@ -255,6 +324,11 @@
         <div class="card-image-wrapper">
           <span class="badge">Popular</span>
           <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80" alt="Woodfired Neapolitan Pizza">
+          <button class="btn-bookmark-toggle" aria-label="Bookmark" data-name="Neapolitan Pizza">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </button>
         </div>
         <div class="card-content">
           <h2 class="food-name">Neapolitan Pizza</h2>
@@ -271,6 +345,11 @@
         <div class="card-image-wrapper">
           <span class="badge">Healthy</span>
           <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Avocado Grain Bowl">
+          <button class="btn-bookmark-toggle" aria-label="Bookmark" data-name="Avocado Grain Bowl">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </button>
         </div>
         <div class="card-content">
           <h2 class="food-name">Avocado Grain Bowl</h2>
@@ -287,6 +366,11 @@
         <div class="card-image-wrapper">
           <span class="badge">Chef's Choice</span>
           <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80" alt="Spicy Ramen Bowl">
+          <button class="btn-bookmark-toggle" aria-label="Bookmark" data-name="Tonkotsu Ramen">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </button>
         </div>
         <div class="card-content">
           <h2 class="food-name">Tonkotsu Ramen</h2>
@@ -303,6 +387,11 @@
         <div class="card-image-wrapper">
           <span class="badge">Dessert</span>
           <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80" alt="Glazed Donuts">
+          <button class="btn-bookmark-toggle" aria-label="Bookmark" data-name="Assorted Glazed Donuts">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </button>
         </div>
         <div class="card-content">
           <h2 class="food-name">Assorted Glazed Donuts</h2>
@@ -319,6 +408,11 @@
         <div class="card-image-wrapper">
           <span class="badge">Beverage</span>
           <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80" alt="Iced Coffee">
+          <button class="btn-bookmark-toggle" aria-label="Bookmark" data-name="Matcha Cold Brew">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </button>
         </div>
         <div class="card-content">
           <h2 class="food-name">Matcha Cold Brew</h2>
@@ -374,14 +468,50 @@
       const headerActions = document.getElementById('header-actions');
 
       if (isLoggedIn) {
-        // Replace header actions with Log Out button
+        // Replace header actions with Bookmarks Link & Log Out button
         headerActions.innerHTML = `
+          <a href="pages/bookmarks.html" class="btn-bookmarks">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+            Bookmarks
+          </a>
           <button id="btn-logout" class="btn-login" style="background: none; border: none; cursor: pointer; font-family: inherit;">Log Out</button>
         `;
         document.getElementById('btn-logout').addEventListener('click', () => {
           localStorage.removeItem('isLoggedIn');
           window.location.reload();
         });
+
+        // Load bookmarks from localStorage
+        let bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+
+        // Show bookmark toggle buttons and set initial state
+        const bookmarkToggles = document.querySelectorAll('.btn-bookmark-toggle');
+        bookmarkToggles.forEach(btn => {
+          btn.style.display = 'flex';
+          const itemName = btn.getAttribute('data-name');
+          if (bookmarks.includes(itemName)) {
+            btn.classList.add('bookmarked');
+          }
+
+          // Bookmark/unbookmark on click
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+            if (bookmarks.includes(itemName)) {
+              bookmarks = bookmarks.filter(name => name !== itemName);
+              btn.classList.remove('bookmarked');
+            } else {
+              bookmarks.push(itemName);
+              btn.classList.add('bookmarked');
+            }
+            localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+          });
+        });
+
       } else {
         // Signed-out behavior for "Order Now" buttons
         const orderButtons = document.querySelectorAll('.btn-add');

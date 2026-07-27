@@ -223,7 +223,7 @@
 
   <header>
     <a href="../index.html" class="logo">Nokva<span>.</span> Marketplace</a>
-    <div class="header-actions">
+    <div class="header-actions" id="header-actions">
       <a href="../index.html" class="back-link" style="margin-right: 1rem;">&larr; Back to Shop</a>
       <a href="login.html" class="btn-login">Log In</a>
       <a href="signup.html" class="btn-signup">Sign Up</a>
@@ -308,6 +308,34 @@
     <p>&copy; Nokva Marketplace. Hosted on GitHub Pages.</p>
   </footer>
 
+  <style>
+    .btn-bookmarks {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #1a1a1a;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .btn-bookmarks:hover {
+      color: #e63946;
+      background-color: #f8f9fa;
+    }
+
+    .btn-bookmarks svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+  </style>
+
   <script>
     // Auto-select food item based on query parameter
     window.addEventListener('DOMContentLoaded', () => {
@@ -325,6 +353,27 @@
             }
           }
         }
+      }
+
+      // Consistent logged-in navigation
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      const headerActions = document.getElementById('header-actions');
+
+      if (isLoggedIn) {
+        headerActions.innerHTML = `
+          <a href="../index.html" class="back-link" style="margin-right: 1rem;">&larr; Back to Shop</a>
+          <a href="bookmarks.html" class="btn-bookmarks">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+            Bookmarks
+          </a>
+          <button id="btn-logout" class="btn-login" style="background: none; border: none; cursor: pointer; font-family: inherit;">Log Out</button>
+        `;
+        document.getElementById('btn-logout').addEventListener('click', () => {
+          localStorage.removeItem('isLoggedIn');
+          window.location.reload();
+        });
       }
     });
   </script>
