@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found - Nokva Marketplace</title>
+  <style>
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: #f8f9fa;
+      color: #2b2b2b;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    /* Header & Navigation */
+    header {
+      background-color: #ffffff;
+      border-bottom: 1px solid #eaeaea;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: #e63946;
+    }
+
+    /* Error Card Container */
+    .container {
+      max-width: 550px;
+      margin: auto;
+      padding: 2rem 1.5rem;
+      width: 100%;
+    }
+
+    .error-card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .error-code {
+      font-size: 5rem;
+      font-weight: 800;
+      color: #e63946;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .error-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 0.5rem;
+    }
+
+    .error-description {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    /* Button Actions */
+    .action-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background-color: #1a1a1a;
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: #e63946;
+    }
+
+    .btn-secondary {
+      background-color: #f0f0f0;
+      color: #333;
+    }
+
+    .btn-secondary:hover {
+      background-color: #e5e5e5;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #888;
+      font-size: 0.85rem;
+      border-top: 1px solid #eaeaea;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="/nokva-marketplace/index.html" class="logo">Nokva<span>.</span> Marketplace</a>
+  </header>
+
+  <main class="container">
+    <div class="error-card">
+      <div class="error-code">404</div>
+      <h1 class="error-title">Page Not Found</h1>
+      <p class="error-description">Looks like the item or page you were searching for has been moved, eaten, or doesn't exist.</p>
+      
+      <div class="action-group">
+        <a href="index.html" class="btn btn-primary">Return to Shop</a>
+        <a href="pages/order.html" class="btn btn-secondary">Place Order</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; Nokva Marketplace. Hosted on GitHub Pages.</p>
+  </footer>
+
+</body>
+</html>
