@@ -263,6 +263,48 @@
       border-top: 1px solid #eaeaea;
       margin-top: 3rem;
     }
+
+    /* Danger Zone & Delete Button */
+    .danger-zone {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid #eaeaea;
+    }
+
+    .danger-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #e63946;
+      margin-bottom: 0.5rem;
+    }
+
+    .danger-desc {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1.25rem;
+    }
+
+    .btn-delete {
+      width: 100%;
+      background-color: #ffffff;
+      color: #e63946;
+      border: 1px solid #e63946;
+      padding: 0.9rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn-delete:hover {
+      background-color: #e63946;
+      color: #ffffff;
+    }
+
+    .btn-delete:active {
+      transform: scale(0.99);
+    }
   </style>
 </head>
 <body>
@@ -341,6 +383,13 @@
 
         <button type="submit" class="btn-submit">Save Changes</button>
       </form>
+
+      <!-- Danger Zone -->
+      <div class="danger-zone">
+        <h2 class="danger-title">Danger Zone</h2>
+        <p class="danger-desc">Once you delete your account, there is no going back. Please be certain.</p>
+        <button type="button" id="btn-delete-account" class="btn-delete">Delete Account</button>
+      </div>
     </div>
   </main>
 
@@ -371,6 +420,24 @@
       if (prefNewsletter !== null) {
         document.getElementById('pref-newsletter').checked = prefNewsletter === 'true';
       }
+
+      // Delete Account logic
+      document.getElementById('btn-delete-account').addEventListener('click', () => {
+        const confirmed = confirm("Are you sure you want to delete your account? This action cannot be undone.");
+        if (confirmed) {
+          localStorage.removeItem('isLoggedIn');
+          localStorage.removeItem('user_fullname');
+          localStorage.removeItem('user_email');
+          localStorage.removeItem('user_phone');
+          localStorage.removeItem('user_address');
+          localStorage.removeItem('pref_notifications');
+          localStorage.removeItem('pref_newsletter');
+          localStorage.removeItem('bookmarks');
+
+          alert('Account deleted successfully.');
+          window.location.href = '../index.html';
+        }
+      });
     });
 
     function saveSettings(event) {
