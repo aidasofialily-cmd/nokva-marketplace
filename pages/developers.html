@@ -524,6 +524,228 @@
       width: 14px;
       height: 14px;
     }
+
+    /* My Apps Header Button */
+    .btn-my-apps {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #1a1a1a;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .btn-my-apps:hover {
+      color: #e63946;
+      background-color: #f8f9fa;
+    }
+
+    .btn-my-apps svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    /* My Apps Section styles */
+    .my-apps-section {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 3rem 2.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border: 1px solid #eaeaea;
+      margin-bottom: 2.5rem;
+    }
+
+    .apps-login-prompt {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .apps-login-prompt p {
+      color: #666;
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .apps-login-prompt .btn-login-redirect {
+      background-color: #e63946;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.6rem 1.5rem;
+      border-radius: 6px;
+      border: 1px solid #e63946;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+      display: inline-block;
+    }
+
+    .apps-login-prompt .btn-login-redirect:hover {
+      background-color: #d62828;
+      border-color: #d62828;
+    }
+
+    .apps-dashboard {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .apps-dashboard {
+        grid-template-columns: 3fr 2fr;
+      }
+    }
+
+    .apps-list-container h3,
+    .app-register-container h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 1rem;
+    }
+
+    .no-apps-message {
+      background-color: #f8f9fa;
+      border: 1px dashed #ccc;
+      padding: 2rem;
+      border-radius: 8px;
+      text-align: center;
+      color: #666;
+    }
+
+    .apps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .app-item-card {
+      background-color: #f8f9fa;
+      border: 1px solid #eaeaea;
+      border-radius: 8px;
+      padding: 1.25rem;
+      position: relative;
+    }
+
+    .app-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
+    }
+
+    .app-item-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .app-item-desc {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 0.75rem;
+    }
+
+    .app-item-meta {
+      font-size: 0.8rem;
+      color: #555;
+      background-color: #ffffff;
+      border: 1px solid #eaeaea;
+      padding: 0.5rem;
+      border-radius: 6px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      margin-bottom: 0.5rem;
+      overflow-x: auto;
+    }
+
+    .app-item-meta div {
+      margin-bottom: 0.25rem;
+      white-space: nowrap;
+    }
+
+    .app-item-meta span {
+      font-weight: 700;
+      color: #e63946;
+    }
+
+    .btn-app-revoke {
+      background-color: transparent;
+      color: #e63946;
+      border: 1px solid #e63946;
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .btn-app-revoke:hover {
+      background-color: #e63946;
+      color: #ffffff;
+    }
+
+    /* Registration form styles */
+    .app-register-card {
+      background-color: #f8f9fa;
+      border: 1px solid #eaeaea;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .app-form-group {
+      margin-bottom: 1rem;
+    }
+
+    .app-form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      color: #333;
+    }
+
+    .app-form-group input,
+    .app-form-group textarea {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      background-color: #ffffff;
+      outline: none;
+    }
+
+    .app-form-group input:focus,
+    .app-form-group textarea:focus {
+      border-color: #e63946;
+      box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15);
+    }
+
+    .btn-register-app {
+      width: 100%;
+      background-color: #1a1a1a;
+      color: #ffffff;
+      border: none;
+      padding: 0.7rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-register-app:hover {
+      background-color: #e63946;
+    }
   </style>
 </head>
 <body>
@@ -542,6 +764,53 @@
     <section class="hero-section">
       <h1 class="hero-title">Developer Hub</h1>
       <p class="hero-subtitle">Welcome to the Nokva Marketplace Developer community. Build awesome culinary integrations with our fast, open ecosystem.</p>
+    </section>
+
+    <!-- My Apps Section (Added to support Developer App registration and list) -->
+    <section class="my-apps-section" id="my-apps-section">
+      <h2 class="section-title">My Apps</h2>
+
+      <!-- Logged-out state view -->
+      <div id="apps-logged-out" class="apps-login-prompt">
+        <p>You must be logged in to access and manage your registered applications.</p>
+        <a href="login.html" class="btn-login-redirect">Log In to Developer Hub</a>
+      </div>
+
+      <!-- Logged-in dashboard view -->
+      <div id="apps-dashboard" class="apps-dashboard" style="display: none;">
+        <!-- Apps List Column -->
+        <div class="apps-list-container">
+          <h3>Registered Applications</h3>
+          <div id="apps-list" class="apps-list">
+            <!-- Dynamically populated apps go here -->
+          </div>
+          <div id="no-apps-message" class="no-apps-message">
+            <p>You haven't registered any applications yet. Complete the form to the right to create your first application!</p>
+          </div>
+        </div>
+
+        <!-- Register App Column -->
+        <div class="app-register-container">
+          <h3>Register New App</h3>
+          <div class="app-register-card">
+            <form id="app-register-form" onsubmit="registerNewApp(event)">
+              <div class="app-form-group">
+                <label for="app-name">Application Name</label>
+                <input type="text" id="app-name" required placeholder="e.g., Nokva Cooking Companion">
+              </div>
+              <div class="app-form-group">
+                <label for="app-desc">Description</label>
+                <textarea id="app-desc" rows="3" required placeholder="Describe what your app does..."></textarea>
+              </div>
+              <div class="app-form-group">
+                <label for="app-redirect">Redirect URI</label>
+                <input type="url" id="app-redirect" required placeholder="https://yourdomain.com/callback">
+              </div>
+              <button type="submit" class="btn-register-app">Register Application</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Meet the Developers -->
@@ -664,6 +933,15 @@ curl -X GET <span class="string">"https://api.github.com/repos/aidasofialily-cmd
       if (isLoggedIn) {
         headerActions.innerHTML = `
           <a href="../index.html" class="back-link" style="margin-right: 1rem;">&larr; Back to Shop</a>
+          <a href="#my-apps-section" class="btn-my-apps">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            My Apps
+          </a>
           <a href="bookmarks.html" class="btn-bookmarks">
             <svg viewBox="0 0 24 24">
               <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
@@ -683,8 +961,119 @@ curl -X GET <span class="string">"https://api.github.com/repos/aidasofialily-cmd
           localStorage.removeItem('isLoggedIn');
           window.location.reload();
         });
+
+        // Show logged in dashboard
+        document.getElementById('apps-logged-out').style.display = 'none';
+        document.getElementById('apps-dashboard').style.display = 'grid';
+
+        // Render Developer Apps
+        renderDeveloperApps();
       }
     });
+
+    // Generate random alphanumeric strings
+    function generateRandomString(length) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let result = '';
+      for (let i = 0; i < length; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return result;
+    }
+
+    // Load and render registered applications
+    function renderDeveloperApps() {
+      const appsList = document.getElementById('apps-list');
+      const noAppsMsg = document.getElementById('no-apps-message');
+      const apps = JSON.parse(localStorage.getItem('developer_apps') || '[]');
+
+      if (apps.length === 0) {
+        appsList.innerHTML = '';
+        noAppsMsg.style.display = 'block';
+        return;
+      }
+
+      noAppsMsg.style.display = 'none';
+      appsList.innerHTML = '';
+
+      apps.forEach((app, index) => {
+        const appCard = document.createElement('div');
+        appCard.className = 'app-item-card';
+        appCard.innerHTML = `
+          <div class="app-item-header">
+            <h4 class="app-item-title">${escapeHTML(app.name)}</h4>
+            <button class="btn-app-revoke" onclick="revokeApp(${index})">Revoke</button>
+          </div>
+          <p class="app-item-desc">${escapeHTML(app.description)}</p>
+          <div class="app-item-meta">
+            <div><span>Redirect URI:</span> ${escapeHTML(app.redirectUri)}</div>
+            <div><span>Client ID:</span> ${escapeHTML(app.clientId)}</div>
+            <div><span>Client Secret:</span> ${escapeHTML(app.clientSecret)}</div>
+          </div>
+        `;
+        appsList.appendChild(appCard);
+      });
+    }
+
+    // Register a new developer application
+    function registerNewApp(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('app-name').value.trim();
+      const description = document.getElementById('app-desc').value.trim();
+      const redirectUri = document.getElementById('app-redirect').value.trim();
+
+      if (!name || !description || !redirectUri) {
+        alert('All fields are required.');
+        return;
+      }
+
+      const clientId = 'nk_' + generateRandomString(16);
+      const clientSecret = 'nks_' + generateRandomString(32);
+
+      const newApp = {
+        name,
+        description,
+        redirectUri,
+        clientId,
+        clientSecret,
+        createdAt: new Date().toISOString()
+      };
+
+      const apps = JSON.parse(localStorage.getItem('developer_apps') || '[]');
+      apps.push(newApp);
+      localStorage.setItem('developer_apps', JSON.stringify(apps));
+
+      // Reset form and re-render
+      document.getElementById('app-register-form').reset();
+      renderDeveloperApps();
+
+      alert('Application registered successfully!');
+    }
+
+    // Revoke registered app
+    function revokeApp(index) {
+      const confirmed = confirm('Are you sure you want to revoke this application? This action cannot be undone.');
+      if (confirmed) {
+        const apps = JSON.parse(localStorage.getItem('developer_apps') || '[]');
+        apps.splice(index, 1);
+        localStorage.setItem('developer_apps', JSON.stringify(apps));
+        renderDeveloperApps();
+      }
+    }
+
+    // Helper to escape HTML and prevent XSS
+    function escapeHTML(str) {
+      return str.replace(/[&<>'"]/g,
+        tag => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        }[tag] || tag)
+      );
+    }
   </script>
 </body>
 </html>
