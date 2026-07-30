@@ -420,6 +420,104 @@
       height: 14px;
     }
 
+    /* Your Apps Section */
+    .your-apps-zone {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid #eaeaea;
+    }
+
+    .your-apps-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+
+    .your-apps-desc {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1.25rem;
+    }
+
+    .settings-apps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .settings-app-item {
+      background-color: #f8f9fa;
+      border: 1px solid #eaeaea;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .settings-app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .settings-app-name {
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .settings-app-details {
+      font-size: 0.8rem;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      color: #555;
+    }
+
+    .settings-app-details span {
+      font-weight: 700;
+      color: #e63946;
+    }
+
+    .btn-revoke-settings {
+      background: none;
+      border: none;
+      color: #e63946;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .btn-revoke-settings:hover {
+      color: #d62828;
+    }
+
+    .settings-no-apps {
+      background-color: #f8f9fa;
+      border: 1px dashed #ccc;
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-manage-dev {
+      display: inline-block;
+      text-decoration: none;
+      background-color: #1a1a1a;
+      color: #ffffff;
+      padding: 0.6rem 1.25rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background-color 0.2s;
+    }
+
+    .btn-manage-dev:hover {
+      background-color: #e63946;
+    }
+
     /* Danger Zone & Delete Button */
     .danger-zone {
       margin-top: 2rem;
@@ -540,6 +638,22 @@
         <button type="submit" class="btn-submit">Save Changes</button>
       </form>
 
+      <!-- Your Apps Section -->
+      <div class="your-apps-zone">
+        <h2 class="your-apps-title">Your Apps</h2>
+        <p class="your-apps-desc">Manage developer applications linked to your account.</p>
+
+        <div id="settings-no-apps" class="settings-no-apps">
+          <p>No registered applications found.</p>
+        </div>
+
+        <div id="settings-apps-list" class="settings-apps-list" style="display: none;">
+          <!-- Dynamically populated developer apps go here -->
+        </div>
+
+        <a href="developers.html#my-apps-section" class="btn-manage-dev">Register or Manage Apps</a>
+      </div>
+
       <!-- Danger Zone -->
       <div class="danger-zone">
         <h2 class="danger-title">Danger Zone</h2>
@@ -622,6 +736,9 @@
         document.getElementById('pref-newsletter').checked = prefNewsletter === 'true';
       }
 
+      // Load registered developer apps
+      renderSettingsApps();
+
       // Delete Account logic
       document.getElementById('btn-delete-account').addEventListener('click', () => {
         const confirmed = confirm("Are you sure you want to delete your account? This action cannot be undone.");
@@ -634,12 +751,71 @@
           localStorage.removeItem('pref_notifications');
           localStorage.removeItem('pref_newsletter');
           localStorage.removeItem('bookmarks');
+          localStorage.removeItem('developer_apps'); // Clean up developer applications as well
 
           alert('Account deleted successfully.');
           window.location.href = '../index.html';
         }
       });
     });
+
+    // Helper to escape HTML and prevent XSS
+    function escapeHTML(str) {
+      return str.replace(/[&<>'"]/g,
+        tag => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        }[tag] || tag)
+      );
+    }
+
+    // Render registered apps inside settings page
+    function renderSettingsApps() {
+      const settingsAppsList = document.getElementById('settings-apps-list');
+      const settingsNoApps = document.getElementById('settings-no-apps');
+      const apps = JSON.parse(localStorage.getItem('developer_apps') || '[]');
+
+      if (apps.length === 0) {
+        settingsAppsList.innerHTML = '';
+        settingsAppsList.style.display = 'none';
+        settingsNoApps.style.display = 'block';
+        return;
+      }
+
+      settingsNoApps.style.display = 'none';
+      settingsAppsList.style.display = 'flex';
+      settingsAppsList.innerHTML = '';
+
+      apps.forEach((app, index) => {
+        const appElement = document.createElement('div');
+        appElement.className = 'settings-app-item';
+        appElement.innerHTML = `
+          <div class="settings-app-header">
+            <span class="settings-app-name">${escapeHTML(app.name)}</span>
+            <button class="btn-revoke-settings" onclick="revokeSettingsApp(${index})">Revoke</button>
+          </div>
+          <div class="settings-app-details">
+            <div><span>Client ID:</span> ${escapeHTML(app.clientId)}</div>
+            <div><span>Client Secret:</span> ${escapeHTML(app.clientSecret)}</div>
+          </div>
+        `;
+        settingsAppsList.appendChild(appElement);
+      });
+    }
+
+    // Revoke app directly from Settings Page
+    function revokeSettingsApp(index) {
+      const confirmed = confirm('Are you sure you want to revoke this application? This action cannot be undone.');
+      if (confirmed) {
+        const apps = JSON.parse(localStorage.getItem('developer_apps') || '[]');
+        apps.splice(index, 1);
+        localStorage.setItem('developer_apps', JSON.stringify(apps));
+        renderSettingsApps();
+      }
+    }
 
     function saveSettings(event) {
       event.preventDefault();
