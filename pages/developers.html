@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Bookmarks - Nokva Marketplace</title>
+  <title>Developer Hub - Nokva Marketplace</title>
   <style>
     /* Reset & Base Styles */
     * {
@@ -77,11 +77,28 @@
       background-color: #f8f9fa;
     }
 
+    .btn-signup {
+      background-color: #e63946;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      border: 1px solid #e63946;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn-signup:hover {
+      background-color: #d62828;
+      border-color: #d62828;
+    }
+
     .btn-bookmarks {
       display: flex;
       align-items: center;
       gap: 0.4rem;
-      color: #e63946; /* highlighted style for the current page */
+      color: #1a1a1a;
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 600;
@@ -91,14 +108,15 @@
     }
 
     .btn-bookmarks:hover {
+      color: #e63946;
       background-color: #f8f9fa;
     }
 
     .btn-bookmarks svg {
       width: 18px;
       height: 18px;
-      fill: #e63946;
-      stroke: #e63946;
+      fill: none;
+      stroke: currentColor;
       stroke-width: 2;
     }
 
@@ -128,193 +146,220 @@
       stroke-width: 2;
     }
 
-    /* Main Container */
+    /* Container */
     .container {
-      max-width: 1200px;
-      margin: 2rem auto;
+      max-width: 1000px;
+      margin: 3rem auto;
       padding: 0 1.5rem;
     }
 
-    .shop-title {
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-      font-weight: 600;
-    }
-
-    /* Grid Layout */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.75rem;
-    }
-
-    /* Food Image Card */
-    .food-card {
+    /* Hero Section */
+    .hero-section {
       background-color: #ffffff;
       border-radius: 12px;
-      overflow: hidden;
+      padding: 3rem 2rem;
+      text-align: center;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      display: flex;
-      flex-direction: column;
+      margin-bottom: 2.5rem;
     }
 
-    .food-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    .hero-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 0.75rem;
     }
 
-    /* Card Media Area */
-    .card-image-wrapper {
-      position: relative;
-      width: 100%;
-      padding-top: 75%; /* 4:3 Aspect Ratio */
-      overflow: hidden;
-      background-color: #f0f0f0;
-    }
-
-    .card-image-wrapper img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-
-    .food-card:hover .card-image-wrapper img {
-      transform: scale(1.05);
-    }
-
-    /* Tag overlay */
-    .badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background-color: rgba(0, 0, 0, 0.65);
-      color: #ffffff;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      backdrop-filter: blur(4px);
-    }
-
-    /* Bookmark Toggle Button */
-    .btn-bookmark-toggle {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background-color: rgba(255, 255, 255, 0.85);
-      border: none;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      transition: background-color 0.2s, transform 0.2s;
-      z-index: 10;
-    }
-
-    .btn-bookmark-toggle:hover {
-      background-color: #ffffff;
-      transform: scale(1.05);
-    }
-
-    .btn-bookmark-toggle svg {
-      width: 18px;
-      height: 18px;
-      fill: none;
-      stroke: #666;
-      stroke-width: 2;
-      transition: fill 0.2s, stroke 0.2s;
-    }
-
-    .btn-bookmark-toggle.bookmarked svg {
-      fill: #e63946;
-      stroke: #e63946;
-    }
-
-    /* Card Details */
-    .card-content {
-      padding: 1.25rem;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-    }
-
-    .food-name {
+    .hero-subtitle {
       font-size: 1.1rem;
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Team Grid */
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .team-card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border: 1px solid #eaeaea;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .team-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background-color: #e63946;
+      color: #ffffff;
+      font-size: 2.2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem auto;
+      box-shadow: 0 4px 10px rgba(230, 57, 70, 0.2);
+    }
+
+    .member-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 0.25rem;
+    }
+
+    .member-role {
+      font-size: 0.9rem;
+      color: #e63946;
       font-weight: 600;
-      margin-bottom: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .member-bio {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .member-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: #1a1a1a;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+    }
+
+    .member-link:hover {
+      background-color: #e63946;
+    }
+
+    .member-link svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* API Documentation */
+    .api-section {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 3rem 2.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border: 1px solid #eaeaea;
+    }
+
+    .api-intro {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .endpoint-card {
+      border-left: 4px solid #e63946;
+      background-color: #fcfcfc;
+      padding: 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 1.5rem;
+      border: 1px solid #eaeaea;
+      border-left-width: 4px;
+    }
+
+    .endpoint-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .method {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      color: #ffffff;
+    }
+
+    .method.get {
+      background-color: #2ec4b6;
+    }
+
+    .method.post {
+      background-color: #e63946;
+    }
+
+    .path {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-weight: 700;
+      font-size: 0.95rem;
       color: #111;
     }
 
-    .food-description {
-      font-size: 0.875rem;
+    .endpoint-desc {
+      font-size: 0.9rem;
       color: #666;
-      margin-bottom: 1rem;
-      flex-grow: 1;
     }
 
-    .card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: auto;
-    }
-
-    .price {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #e63946;
-    }
-
-    .btn-add {
-      background-color: #1a1a1a;
-      color: #ffffff;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .btn-add:hover {
-      background-color: #e63946;
-      color: #ffffff;
-    }
-
-    /* Empty state */
-    .empty-state {
-      text-align: center;
-      padding: 4rem 2rem;
-      background-color: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    /* Code Block Section */
+    .code-container {
       margin-top: 2rem;
     }
 
-    .empty-state h2 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
+    .code-title {
+      font-size: 1rem;
+      font-weight: 600;
       color: #333;
+      margin-bottom: 0.75rem;
     }
 
-    .empty-state p {
-      color: #666;
-      margin-bottom: 1.5rem;
+    pre {
+      background-color: #1e1e1e;
+      color: #d4d4d4;
+      padding: 1.25rem;
+      border-radius: 8px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.3);
     }
 
-        /* New Multi-column Footer Styling */
+    .keyword { color: #569cd6; }
+    .string { color: #ce9178; }
+    .comment { color: #6a9955; }
+    .function { color: #dcdcaa; }
+
+    /* Footer Styling */
     .footer-container {
       background-color: #ffffff;
       border-top: 1px solid #eaeaea;
@@ -483,49 +528,86 @@
 </head>
 <body>
 
-  <!-- Force logged-in verification before anything else is shown -->
-  <script>
-    if (localStorage.getItem('isLoggedIn') !== 'true') {
-      window.location.href = 'login.html';
-    }
-  </script>
-
   <header>
     <a href="../index.html" class="logo">Nokva<span>.</span> Marketplace</a>
     <div class="header-actions" id="header-actions">
       <a href="../index.html" class="back-link" style="margin-right: 1rem;">&larr; Back to Shop</a>
-      <a href="#" class="btn-bookmarks">
-        <svg viewBox="0 0 24 24">
-          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-        </svg>
-        Bookmarks
-      </a>
-      <a href="settings.html" class="btn-settings">
-        <svg viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="3"></circle>
-          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-        </svg>
-        Settings
-      </a>
-      <button id="btn-logout" class="btn-login" style="background: none; border: none; cursor: pointer; font-family: inherit;">Log Out</button>
+      <a href="login.html" class="btn-login">Log In</a>
+      <a href="signup.html" class="btn-signup">Sign Up</a>
     </div>
   </header>
 
   <main class="container">
-    <h1 class="shop-title">My Bookmarked Items</h1>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <h1 class="hero-title">Developer Hub</h1>
+      <p class="hero-subtitle">Welcome to the Nokva Marketplace Developer community. Build awesome culinary integrations with our fast, open ecosystem.</p>
+    </section>
 
-    <div class="product-grid" id="product-grid">
-      <!-- Dynamically rendered bookmarked items go here -->
+    <!-- Meet the Developers -->
+    <h2 class="section-title">Meet the Developers</h2>
+    <div class="team-grid">
+      <!-- Member 1 -->
+      <article class="team-card">
+        <div class="avatar">EJ</div>
+        <h3 class="member-name">EiJackGH</h3>
+        <p class="member-role">Lead Platform Engineer</p>
+        <p class="member-bio">Passionate about building scalable web applications, robust cloud APIs, and highly interactive user experiences for foodies worldwide.</p>
+        <a href="https://github.com/EiJackGH" class="member-link" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-2.33-4.054-4.605-4.054-9.27 0-2.42.859-4.4 2.27-5.965-.205-.572-.985-2.82.22-5.9 0 0 1.805-.575 5.9 2.22a20.48 20.48 0 0 1 10.74 0c4.095-2.795 5.9-2.22 5.9-2.22 1.21 3.08.43 5.328.225 5.9 1.415 1.565 2.264 3.545 2.264 5.965 0 4.68-2.83 5.935-5.525 6.23.44.385.83 1.135.83 2.29 0 1.65-.015 2.98-.015 3.38 0 .32.22.695.825.575C20.565 21.795 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+          </svg>
+          View Profile
+        </a>
+      </article>
     </div>
 
-    <div class="empty-state" id="empty-state" style="display: none;">
-      <h2>No Bookmarks Yet</h2>
-      <p>Explore our menu and bookmark your favorite food items to see them here.</p>
-      <a href="../index.html" class="btn-add">Browse Food Items</a>
-    </div>
+    <!-- API Documentation -->
+    <section class="api-section">
+      <h2 class="section-title">Platform API Reference</h2>
+      <p class="api-intro">Integrate Nokva Marketplace product lists and order status updates directly into your external kitchen display systems or apps.</p>
+
+      <div class="endpoint-card">
+        <div class="endpoint-header">
+          <span class="method get">GET</span>
+          <span class="path">/v1/products</span>
+        </div>
+        <p class="endpoint-desc">Retrieve a list of all currently available gourmet products, their pricing, description, and status tags.</p>
+      </div>
+
+      <div class="endpoint-card">
+        <div class="endpoint-header">
+          <span class="method post">POST</span>
+          <span class="path">/v1/orders</span>
+        </div>
+        <p class="endpoint-desc">Place an order for selected gourmet items on behalf of a validated user session.</p>
+      </div>
+
+      <div class="code-container">
+        <h3 class="code-title">Example Request</h3>
+        <pre><code><span class="comment"># Fetch all products using curl</span>
+curl -X GET <span class="string">"https://api.nokvamarketplace.com/v1/products"</span> \
+  -H <span class="string">"Authorization: Bearer YOUR_API_KEY"</span></code></pre>
+      </div>
+
+      <div class="code-container">
+        <h3 class="code-title">Example JSON Response</h3>
+        <pre><code>{
+  <span class="string">"status"</span>: <span class="string">"success"</span>,
+  <span class="string">"products"</span>: [
+    {
+      <span class="string">"id"</span>: <span class="string">"prod_01"</span>,
+      <span class="string">"name"</span>: <span class="string">"Artisan Cheeseburger"</span>,
+      <span class="string">"price"</span>: <span class="keyword">12.50</span>,
+      <span class="string">"badge"</span>: <span class="string">"Fresh"</span>
+    }
+  ]
+}</code></pre>
+      </div>
+    </section>
   </main>
 
-    <footer class="footer-container">
+  <footer class="footer-container">
     <div class="footer-content">
       <div class="footer-col">
         <a href="../index.html" class="footer-logo">Nokva<span>.</span> Marketplace</a>
@@ -575,120 +657,34 @@
   </footer>
 
   <script>
-    // Static data containing all items
-    const ALL_PRODUCTS = [
-      {
-        name: "Artisan Cheeseburger",
-        description: "Double beef patty with melted cheddar, fresh lettuce, and signature sauce on a brioche bun.",
-        price: "$12.50",
-        badge: "Fresh",
-        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "Neapolitan Pizza",
-        description: "Classic stone-baked crust topped with San Marzano tomatoes, fresh mozzarella, and basil.",
-        price: "$16.00",
-        badge: "Popular",
-        image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "Avocado Grain Bowl",
-        description: "Quinoa, sliced avocado, roasted chickpeas, cherry tomatoes, and tahini dressing.",
-        price: "$11.00",
-        badge: "Healthy",
-        image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "Tonkotsu Ramen",
-        description: "Rich pork bone broth, hand-crafted noodles, soft-boiled egg, tender chashu, and scallions.",
-        price: "$14.50",
-        badge: "Chef's Choice",
-        image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "Assorted Glazed Donuts",
-        description: "Selection of handmade artisanal donuts topped with custom glazes and sprinkles.",
-        price: "$8.00",
-        badge: "Dessert",
-        image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "Matcha Cold Brew",
-        description: "Premium Japanese matcha layered over cold brew coffee and sweetened oat milk.",
-        price: "$6.50",
-        badge: "Beverage",
-        image: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80"
-      }
-    ];
-
     document.addEventListener('DOMContentLoaded', () => {
-      // Logout logic
-      document.getElementById('btn-logout').addEventListener('click', () => {
-        localStorage.removeItem('isLoggedIn');
-        window.location.href = '../index.html';
-      });
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      const headerActions = document.getElementById('header-actions');
 
-      renderBookmarks();
-    });
-
-    function renderBookmarks() {
-      const productGrid = document.getElementById('product-grid');
-      const emptyState = document.getElementById('empty-state');
-
-      const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
-
-      // Filter products that are in the bookmarks list
-      const bookmarkedProducts = ALL_PRODUCTS.filter(product => bookmarks.includes(product.name));
-
-      if (bookmarkedProducts.length === 0) {
-        productGrid.style.display = 'none';
-        emptyState.style.display = 'block';
-        return;
-      }
-
-      productGrid.style.display = 'grid';
-      emptyState.style.display = 'none';
-      productGrid.innerHTML = '';
-
-      bookmarkedProducts.forEach(product => {
-        const article = document.createElement('article');
-        article.className = 'food-card';
-        article.innerHTML = `
-          <div class="card-image-wrapper">
-            <span class="badge">${product.badge}</span>
-            <img src="${product.image}" alt="${product.name}">
-            <button class="btn-bookmark-toggle bookmarked" aria-label="Bookmark" data-name="${product.name}">
-              <svg viewBox="0 0 24 24">
-                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-              </svg>
-            </button>
-          </div>
-          <div class="card-content">
-            <h2 class="food-name">${product.name}</h2>
-            <p class="food-description">${product.description}</p>
-            <div class="card-footer">
-              <span class="price">${product.price}</span>
-              <a href="order.html?item=${encodeURIComponent(product.name)}" class="btn-add">Order Now</a>
-            </div>
-          </div>
+      if (isLoggedIn) {
+        headerActions.innerHTML = `
+          <a href="../index.html" class="back-link" style="margin-right: 1rem;">&larr; Back to Shop</a>
+          <a href="bookmarks.html" class="btn-bookmarks">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+            Bookmarks
+          </a>
+          <a href="settings.html" class="btn-settings">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+            Settings
+          </a>
+          <button id="btn-logout" class="btn-login" style="background: none; border: none; cursor: pointer; font-family: inherit;">Log Out</button>
         `;
-
-        // Click handler to remove bookmark
-        const btnToggle = article.querySelector('.btn-bookmark-toggle');
-        btnToggle.addEventListener('click', (e) => {
-          e.preventDefault();
-          let currentBookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
-          currentBookmarks = currentBookmarks.filter(name => name !== product.name);
-          localStorage.setItem('bookmarks', JSON.stringify(currentBookmarks));
-
-          // Re-render
-          renderBookmarks();
+        document.getElementById('btn-logout').addEventListener('click', () => {
+          localStorage.removeItem('isLoggedIn');
+          window.location.reload();
         });
-
-        productGrid.appendChild(article);
-      });
-    }
+      }
+    });
   </script>
-
 </body>
 </html>
