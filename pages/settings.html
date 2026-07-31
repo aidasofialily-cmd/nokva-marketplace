@@ -563,102 +563,121 @@
 </head>
 <body>
 
-  <!-- Force logged-in verification before anything else is shown -->
-  <script>
-    if (localStorage.getItem('isLoggedIn') !== 'true') {
-      window.location.href = 'login.html';
-    }
-  </script>
-
   <header>
     <a href="../index.html" class="logo">Nokva<span>.</span> Marketplace</a>
     <div class="header-actions" id="header-actions">
-      <a href="../index.html" class="back-link" style="margin-right: 1rem;">&larr; Back to Shop</a>
-      <a href="bookmarks.html" class="btn-bookmarks">
-        <svg viewBox="0 0 24 24">
-          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-        </svg>
-        Bookmarks
-      </a>
-      <a href="settings.html" class="btn-settings">
-        <svg viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="3"></circle>
-          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-        </svg>
-        Settings
-      </a>
-      <button id="btn-logout" class="btn-login" style="background: none; border: none; cursor: pointer; font-family: inherit;">Log Out</button>
+      <!-- Will be populated dynamically based on login state -->
     </div>
   </header>
 
   <main class="container">
-    <div class="form-card">
-      <h1 class="form-title">Account Settings</h1>
-      <p class="form-subtitle">Update your profile, delivery address, and personal preferences.</p>
+    <!-- Logged-in View -->
+    <div id="settings-logged-in-view" style="display: none;">
+      <div class="form-card">
+        <h1 class="form-title">Account Settings</h1>
+        <p class="form-subtitle">Update your profile, delivery address, and personal preferences.</p>
 
-      <form id="settings-form" onsubmit="saveSettings(event)">
-        <!-- Personal Info -->
-        <div class="form-group">
-          <label for="fullname">Full Name</label>
-          <input type="text" id="fullname" name="fullname" placeholder="John Doe" required>
-        </div>
-
-        <div class="row">
+        <form id="settings-form" onsubmit="saveSettings(event)">
+          <!-- Personal Info -->
           <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="john@example.com" required>
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" placeholder="John Doe" required>
           </div>
+
+          <div class="row">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000">
+            </div>
+          </div>
+
+          <!-- Address -->
           <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000">
+            <label for="address">Delivery Address</label>
+            <textarea id="address" name="address" rows="3" placeholder="Enter your full home address..."></textarea>
           </div>
-        </div>
 
-        <!-- Address -->
-        <div class="form-group">
-          <label for="address">Delivery Address</label>
-          <textarea id="address" name="address" rows="3" placeholder="Enter your full home address..."></textarea>
-        </div>
-
-        <!-- Preferences Section -->
-        <div class="form-group">
-          <label>Preferences</label>
-          <div class="preference-group">
-            <label class="checkbox-label">
-              <input type="checkbox" id="pref-notifications" name="notifications" checked>
-              Receive order updates via Email
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox" id="pref-newsletter" name="newsletter">
-              Subscribe to weekly culinary newsletters
-            </label>
+          <!-- Preferences Section -->
+          <div class="form-group">
+            <label>Preferences</label>
+            <div class="preference-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="pref-notifications" name="notifications" checked>
+                Receive order updates via Email
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="pref-newsletter" name="newsletter">
+                Subscribe to weekly culinary newsletters
+              </label>
+            </div>
           </div>
+
+          <button type="submit" class="btn-submit">Save Changes</button>
+        </form>
+
+        <!-- Your Apps Section -->
+        <div class="your-apps-zone">
+          <h2 class="your-apps-title">Your Apps</h2>
+          <p class="your-apps-desc">Manage developer applications linked to your account.</p>
+
+          <div id="settings-no-apps" class="settings-no-apps">
+            <p>No registered applications found.</p>
+          </div>
+
+          <div id="settings-apps-list" class="settings-apps-list" style="display: none;">
+            <!-- Dynamically populated developer apps go here -->
+          </div>
+
+          <a href="developers.html#my-apps-section" class="btn-manage-dev">Register or Manage Apps</a>
         </div>
 
-        <button type="submit" class="btn-submit">Save Changes</button>
-      </form>
-
-      <!-- Your Apps Section -->
-      <div class="your-apps-zone">
-        <h2 class="your-apps-title">Your Apps</h2>
-        <p class="your-apps-desc">Manage developer applications linked to your account.</p>
-
-        <div id="settings-no-apps" class="settings-no-apps">
-          <p>No registered applications found.</p>
+        <!-- Danger Zone -->
+        <div class="danger-zone">
+          <h2 class="danger-title">Danger Zone</h2>
+          <p class="danger-desc">Once you delete your account, there is no going back again. Please be certain.</p>
+          <button type="button" id="btn-delete-account" class="btn-delete">Delete Account</button>
         </div>
-
-        <div id="settings-apps-list" class="settings-apps-list" style="display: none;">
-          <!-- Dynamically populated developer apps go here -->
-        </div>
-
-        <a href="developers.html#my-apps-section" class="btn-manage-dev">Register or Manage Apps</a>
       </div>
+    </div>
 
-      <!-- Danger Zone -->
-      <div class="danger-zone">
-        <h2 class="danger-title">Danger Zone</h2>
-        <p class="danger-desc">Once you delete your account, there is no going back again. Please be certain.</p>
-        <button type="button" id="btn-delete-account" class="btn-delete">Delete Account</button>
+    <!-- Logged-out View / Landing Page -->
+    <div id="settings-logged-out-view" style="display: none;">
+      <div class="form-card" style="text-align: center; max-width: 550px; margin: 0 auto; padding: 3rem 2rem;">
+        <div style="background-color: #ffe3e3; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto;">
+          <svg viewBox="0 0 24 24" style="width: 40px; height: 40px; stroke: #e63946; fill: none; stroke-width: 2;">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </div>
+        <h1 class="form-title" style="margin-bottom: 0.75rem;">Account Settings</h1>
+        <p class="form-subtitle" style="margin-bottom: 2rem;">Please log in or sign up to view and update your profile settings, delivery preferences, and developer integrations.</p>
+
+        <div style="background-color: #f8f9fa; border: 1px solid #eaeaea; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; text-align: left;">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 1rem;">With a Nokva Marketplace account, you can:</h3>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+            <li style="display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.9rem; color: #555;">
+              <span style="color: #e63946; font-weight: bold;">✓</span>
+              <span>Save delivery addresses for faster order checkout.</span>
+            </li>
+            <li style="display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.9rem; color: #555;">
+              <span style="color: #e63946; font-weight: bold;">✓</span>
+              <span>Customize notifications and subscribe to newsletters.</span>
+            </li>
+            <li style="display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.9rem; color: #555;">
+              <span style="color: #e63946; font-weight: bold;">✓</span>
+              <span>Create and manage developer applications & APIs.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+          <a href="login.html" class="btn-signup" style="text-align: center; text-decoration: none; display: inline-block; padding: 0.75rem 2rem; background-color: #e63946; border-color: #e63946; color: #ffffff;">Log In</a>
+          <a href="signup.html" class="btn-login" style="text-align: center; text-decoration: none; border: 1px solid #d1d5db; display: inline-block; padding: 0.75rem 2rem; color: #1a1a1a;">Sign Up</a>
+        </div>
       </div>
     </div>
   </main>
@@ -713,49 +732,91 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Logout logic
-      document.getElementById('btn-logout').addEventListener('click', () => {
-        localStorage.removeItem('isLoggedIn');
-        window.location.href = '../index.html';
-      });
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      const headerActions = document.getElementById('header-actions');
+      const loggedInView = document.getElementById('settings-logged-in-view');
+      const loggedOutView = document.getElementById('settings-logged-out-view');
 
-      // Load existing settings
-      document.getElementById('fullname').value = localStorage.getItem('user_fullname') || '';
-      document.getElementById('email').value = localStorage.getItem('user_email') || '';
-      document.getElementById('phone').value = localStorage.getItem('user_phone') || '';
-      document.getElementById('address').value = localStorage.getItem('user_address') || '';
+      if (isLoggedIn) {
+        // Setup header for logged-in user
+        headerActions.innerHTML = `
+          <a href="../index.html" class="back-link" style="margin-right: 1rem;">&larr; Back to Shop</a>
+          <a href="bookmarks.html" class="btn-bookmarks">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+            Bookmarks
+          </a>
+          <a href="settings.html" class="btn-settings">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+            Settings
+          </a>
+          <button id="btn-logout" class="btn-login" style="background: none; border: none; cursor: pointer; font-family: inherit;">Log Out</button>
+        `;
 
-      const prefNotifications = localStorage.getItem('pref_notifications');
-      if (prefNotifications !== null) {
-        document.getElementById('pref-notifications').checked = prefNotifications === 'true';
-      }
-
-      const prefNewsletter = localStorage.getItem('pref_newsletter');
-      if (prefNewsletter !== null) {
-        document.getElementById('pref-newsletter').checked = prefNewsletter === 'true';
-      }
-
-      // Load registered developer apps
-      renderSettingsApps();
-
-      // Delete Account logic
-      document.getElementById('btn-delete-account').addEventListener('click', () => {
-        const confirmed = confirm("Are you sure you want to delete your account? This action cannot be undone.");
-        if (confirmed) {
+        // Logout logic
+        document.getElementById('btn-logout').addEventListener('click', () => {
           localStorage.removeItem('isLoggedIn');
-          localStorage.removeItem('user_fullname');
-          localStorage.removeItem('user_email');
-          localStorage.removeItem('user_phone');
-          localStorage.removeItem('user_address');
-          localStorage.removeItem('pref_notifications');
-          localStorage.removeItem('pref_newsletter');
-          localStorage.removeItem('bookmarks');
-          localStorage.removeItem('developer_apps'); // Clean up developer applications as well
-
-          alert('Account deleted successfully.');
           window.location.href = '../index.html';
+        });
+
+        // Show logged-in view
+        loggedInView.style.display = 'block';
+        loggedOutView.style.display = 'none';
+
+        // Load existing settings
+        document.getElementById('fullname').value = localStorage.getItem('user_fullname') || '';
+        document.getElementById('email').value = localStorage.getItem('user_email') || '';
+        document.getElementById('phone').value = localStorage.getItem('user_phone') || '';
+        document.getElementById('address').value = localStorage.getItem('user_address') || '';
+
+        const prefNotifications = localStorage.getItem('pref_notifications');
+        if (prefNotifications !== null) {
+          document.getElementById('pref-notifications').checked = prefNotifications === 'true';
         }
-      });
+
+        const prefNewsletter = localStorage.getItem('pref_newsletter');
+        if (prefNewsletter !== null) {
+          document.getElementById('pref-newsletter').checked = prefNewsletter === 'true';
+        }
+
+        // Load registered developer apps
+        renderSettingsApps();
+
+        // Delete Account logic
+        document.getElementById('btn-delete-account').addEventListener('click', () => {
+          const confirmed = confirm("Are you sure you want to delete your account? This action cannot be undone.");
+          if (confirmed) {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('user_fullname');
+            localStorage.removeItem('user_email');
+            localStorage.removeItem('user_phone');
+            localStorage.removeItem('user_address');
+            localStorage.removeItem('pref_notifications');
+            localStorage.removeItem('pref_newsletter');
+            localStorage.removeItem('bookmarks');
+            localStorage.removeItem('developer_apps'); // Clean up developer applications as well
+
+            alert('Account deleted successfully.');
+            window.location.href = '../index.html';
+          }
+        });
+
+      } else {
+        // Setup header for logged-out user
+        headerActions.innerHTML = `
+          <a href="../index.html" class="back-link" style="margin-right: 1rem;">&larr; Back to Shop</a>
+          <a href="login.html" class="btn-login">Log In</a>
+          <a href="signup.html" class="btn-signup">Sign Up</a>
+        `;
+
+        // Show logged-out view
+        loggedInView.style.display = 'none';
+        loggedOutView.style.display = 'block';
+      }
     });
 
     // Helper to escape HTML and prevent XSS
