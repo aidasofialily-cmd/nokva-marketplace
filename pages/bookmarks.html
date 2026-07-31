@@ -77,6 +77,23 @@
       background-color: #f8f9fa;
     }
 
+    .btn-signup {
+      background-color: #e63946;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      border: 1px solid #e63946;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn-signup:hover {
+      background-color: #d62828;
+      border-color: #d62828;
+    }
+
     .btn-bookmarks {
       display: flex;
       align-items: center;
@@ -128,11 +145,31 @@
       stroke-width: 2;
     }
 
-    /* Main Container */
+    /* Container */
     .container {
       max-width: 1200px;
       margin: 2rem auto;
       padding: 0 1.5rem;
+    }
+
+    .form-card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .form-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #111;
+    }
+
+    .form-subtitle {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 2rem;
     }
 
     .shop-title {
@@ -314,7 +351,7 @@
       margin-bottom: 1.5rem;
     }
 
-        /* New Multi-column Footer Styling */
+    /* New Multi-column Footer Styling */
     .footer-container {
       background-color: #ffffff;
       border-top: 1px solid #eaeaea;
@@ -483,49 +520,67 @@
 </head>
 <body>
 
-  <!-- Force logged-in verification before anything else is shown -->
-  <script>
-    if (localStorage.getItem('isLoggedIn') !== 'true') {
-      window.location.href = 'login.html';
-    }
-  </script>
-
   <header>
     <a href="../index.html" class="logo">Nokva<span>.</span> Marketplace</a>
     <div class="header-actions" id="header-actions">
-      <a href="../index.html" class="back-link" style="margin-right: 1rem;">&larr; Back to Shop</a>
-      <a href="#" class="btn-bookmarks">
-        <svg viewBox="0 0 24 24">
-          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-        </svg>
-        Bookmarks
-      </a>
-      <a href="settings.html" class="btn-settings">
-        <svg viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="3"></circle>
-          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-        </svg>
-        Settings
-      </a>
-      <button id="btn-logout" class="btn-login" style="background: none; border: none; cursor: pointer; font-family: inherit;">Log Out</button>
+      <!-- Will be populated dynamically based on login state -->
     </div>
   </header>
 
   <main class="container">
-    <h1 class="shop-title">My Bookmarked Items</h1>
+    <!-- Logged-in View -->
+    <div id="bookmarks-logged-in-view" style="display: none;">
+      <h1 class="shop-title">My Bookmarked Items</h1>
 
-    <div class="product-grid" id="product-grid">
-      <!-- Dynamically rendered bookmarked items go here -->
+      <div class="product-grid" id="product-grid">
+        <!-- Dynamically rendered bookmarked items go here -->
+      </div>
+
+      <div class="empty-state" id="empty-state" style="display: none;">
+        <h2>No Bookmarks Yet</h2>
+        <p>Explore our menu and bookmark your favorite food items to see them here.</p>
+        <a href="../index.html" class="btn-add">Browse Food Items</a>
+      </div>
     </div>
 
-    <div class="empty-state" id="empty-state" style="display: none;">
-      <h2>No Bookmarks Yet</h2>
-      <p>Explore our menu and bookmark your favorite food items to see them here.</p>
-      <a href="../index.html" class="btn-add">Browse Food Items</a>
+    <!-- Logged-out View / Landing Page -->
+    <div id="bookmarks-logged-out-view" style="display: none;">
+      <div class="form-card" style="text-align: center; max-width: 550px; margin: 0 auto; padding: 3rem 2rem;">
+        <div style="background-color: #ffe3e3; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto;">
+          <svg viewBox="0 0 24 24" style="width: 40px; height: 40px; stroke: #e63946; fill: none; stroke-width: 2;">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+          </svg>
+        </div>
+        <h1 class="form-title" style="margin-bottom: 0.75rem;">My Bookmarks</h1>
+        <p class="form-subtitle" style="margin-bottom: 2rem;">Please log in or sign up to view and manage your bookmarked food items, customize your taste profile, and get curated suggestions.</p>
+
+        <div style="background-color: #f8f9fa; border: 1px solid #eaeaea; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; text-align: left;">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 1rem;">With Bookmarks on Nokva, you can:</h3>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+            <li style="display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.9rem; color: #555;">
+              <span style="color: #e63946; font-weight: bold;">✓</span>
+              <span>Save your favorite food items for quick access later.</span>
+            </li>
+            <li style="display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.9rem; color: #555;">
+              <span style="color: #e63946; font-weight: bold;">✓</span>
+              <span>Easily reorder your top dishes in just a couple of clicks.</span>
+            </li>
+            <li style="display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.9rem; color: #555;">
+              <span style="color: #e63946; font-weight: bold;">✓</span>
+              <span>Keep track of seasonal specialties and new menu items.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+          <a href="login.html" class="btn-signup" style="text-align: center; text-decoration: none; display: inline-block; padding: 0.75rem 2rem; background-color: #e63946; border-color: #e63946; color: #ffffff;">Log In</a>
+          <a href="signup.html" class="btn-login" style="text-align: center; text-decoration: none; border: 1px solid #d1d5db; display: inline-block; padding: 0.75rem 2rem; color: #1a1a1a;">Sign Up</a>
+        </div>
+      </div>
     </div>
   </main>
 
-    <footer class="footer-container">
+  <footer class="footer-container">
     <div class="footer-content">
       <div class="footer-col">
         <a href="../index.html" class="footer-logo">Nokva<span>.</span> Marketplace</a>
@@ -621,13 +676,54 @@
     ];
 
     document.addEventListener('DOMContentLoaded', () => {
-      // Logout logic
-      document.getElementById('btn-logout').addEventListener('click', () => {
-        localStorage.removeItem('isLoggedIn');
-        window.location.href = '../index.html';
-      });
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      const headerActions = document.getElementById('header-actions');
+      const loggedInView = document.getElementById('bookmarks-logged-in-view');
+      const loggedOutView = document.getElementById('bookmarks-logged-out-view');
 
-      renderBookmarks();
+      if (isLoggedIn) {
+        // Setup header for logged-in user
+        headerActions.innerHTML = `
+          <a href="../index.html" class="back-link" style="margin-right: 1rem;">&larr; Back to Shop</a>
+          <a href="#" class="btn-bookmarks">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+            Bookmarks
+          </a>
+          <a href="settings.html" class="btn-settings">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+            Settings
+          </a>
+          <button id="btn-logout" class="btn-login" style="background: none; border: none; cursor: pointer; font-family: inherit;">Log Out</button>
+        `;
+
+        // Logout logic
+        document.getElementById('btn-logout').addEventListener('click', () => {
+          localStorage.removeItem('isLoggedIn');
+          window.location.href = '../index.html';
+        });
+
+        // Show logged-in view
+        loggedInView.style.display = 'block';
+        loggedOutView.style.display = 'none';
+
+        renderBookmarks();
+      } else {
+        // Setup header for logged-out user
+        headerActions.innerHTML = `
+          <a href="../index.html" class="back-link" style="margin-right: 1rem;">&larr; Back to Shop</a>
+          <a href="login.html" class="btn-login">Log In</a>
+          <a href="signup.html" class="btn-signup">Sign Up</a>
+        `;
+
+        // Show logged-out view
+        loggedInView.style.display = 'none';
+        loggedOutView.style.display = 'block';
+      }
     });
 
     function renderBookmarks() {
