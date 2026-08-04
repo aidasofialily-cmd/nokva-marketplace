@@ -135,4 +135,88 @@ test.describe('Banned Account and Blocked User Redirection', () => {
     const displayedReason = await page.textContent('#banned-reason-text');
     expect(displayedReason).toContain('Offensive');
   });
+
+  test.describe('Banned User Appeal Form', () => {
+    const bannedPageUrl = `file://${path.resolve(__dirname, 'pages/banned.html')}`;
+
+    test.beforeEach(async ({ page }) => {
+      await page.goto(bannedPageUrl);
+      await page.evaluate(() => {
+        localStorage.clear();
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('isBanned', 'true');
+      });
+      await page.reload();
+    });
+
+    test('appeal form fields are present', async ({ page }) => {
+      await expect(page.locator('#appeal-form')).toBeVisible();
+      await expect(page.locator('#appeal-name')).toBeVisible();
+      await expect(page.locator('#appeal-email')).toBeVisible();
+      await expect(page.locator('#appeal-statement')).toBeVisible();
+      await expect(page.locator('.btn-submit-appeal')).toBeVisible();
+    });
+
+    test('pre-fills name and email from localStorage', async ({ page }) => {
+      await page.evaluate(() => {
+        localStorage.setItem('user_fullname', 'Banned Guy');
+        localStorage.setItem('user_email', 'bannedguy@example.com');
+      });
+      await page.reload();
+
+      const nameVal = await page.inputValue('#appeal-name');
+      const emailVal = await page.inputValue('#appeal-email');
+      expect(nameVal).toBe('Banned Guy');
+      expect(emailVal).toBe('bannedguy@example.com');
+    });
+
+    test('submitting appeal updates localStorage, displays alert, and shows success message', async ({ page }) => {
+      await page.fill('#appeal-name', 'Victim Name');
+      await page.fill('#appeal-email', 'victim@example.com');
+      await page.fill('#appeal-statement', 'Please unban me, it was a mistake.');
+
+      // Capture alert dialog
+      page.once('dialog', async dialog => {
+        expect(dialog.message()).toContain('Appeal submitted successfully');
+        await dialog.accept();
+      });
+
+      // Submit
+      await page.click('.btn-submit-appeal');
+
+      // Verify success container is visible, and form is hidden
+      await expect(page.locator('#appeal-success-status')).toBeVisible();
+      await expect(page.locator('#appeal-form')).not.toBeVisible();
+
+      // Check localStorage state
+      const appealSubmitted = await page.evaluate(() => localStorage.getItem('appeal_submitted'));
+      expect(appealSubmitted).toBe('true');
+    });
+
+    test('appeal submission state persists on page reload', async ({ page }) => {
+      await page.evaluate(() => {
+        localStorage.setItem('appeal_submitted', 'true');
+      });
+      await page.reload();
+
+      await expect(page.locator('#appeal-success-status')).toBeVisible();
+      await expect(page.locator('#appeal-form')).not.toBeVisible();
+    });
+
+    test('logging out clears appeal_submitted state', async ({ page }) => {
+      await page.evaluate(() => {
+        localStorage.setItem('appeal_submitted', 'true');
+      });
+      await page.reload();
+
+      await page.click('#btn-banned-logout');
+      await page.waitForURL(/index\.html/);
+
+      // Verify appeal_submitted has been deleted
+      const indexPageUrl = `file://${path.resolve(__dirname, 'index.html')}`;
+      await page.goto(indexPageUrl);
+      const appealSubmitted = await page.evaluate(() => localStorage.getItem('appeal_submitted'));
+      expect(appealSubmitted).toBeNull();
+    });
+  });
 });
