@@ -625,6 +625,20 @@
 
     function submitSupportRequest(event) {
       event.preventDefault();
+      const subject = document.getElementById('subject').value.toLowerCase();
+      const message = document.getElementById('message').value.toLowerCase();
+
+      const offensiveKeywords = ['offensive', 'abusive', 'hate', 'harass', 'insult'];
+      const isOffensive = offensiveKeywords.some(keyword => subject.includes(keyword) || message.includes(keyword));
+
+      if (isOffensive) {
+        localStorage.setItem('isBanned', 'true');
+        localStorage.setItem('banned_reason', 'Violation of Community Guidelines (Offensive/Abusive Content)');
+        alert('Your account has been banned for submitting offensive content.');
+        window.location.href = 'banned.html';
+        return;
+      }
+
       alert('Support ticket submitted successfully! We will get back to you soon.');
       document.getElementById('support-form').reset();
     }
