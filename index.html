@@ -272,6 +272,32 @@
       stroke-width: 2;
     }
 
+    .btn-tutorials {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #1a1a1a;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .btn-tutorials:hover {
+      color: #e63946;
+      background-color: #f8f9fa;
+    }
+
+    .btn-tutorials svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
     .btn-settings {
       display: flex;
       align-items: center;
@@ -470,6 +496,13 @@
   <header>
     <div class="logo">Nokva<span>.</span> Marketplace</div>
     <div class="header-actions" id="header-actions">
+      <a href="pages/tutorials.html" class="btn-tutorials">
+        <svg viewBox="0 0 24 24">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+        </svg>
+        App Tutorials
+      </a>
       <a href="pages/login.html" class="btn-login">Log In</a>
       <a href="pages/signup.html" class="btn-signup">Sign Up</a>
     </div>
@@ -634,6 +667,7 @@
           <li><a href="pages/settings.html">Account Settings</a></li>
           <li><a href="pages/developers.html">Developers</a></li>
           <li><a href="pages/support.html">Customer Support</a></li>
+          <li><a href="pages/tutorials.html">App Tutorials</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -708,6 +742,13 @@
       if (isLoggedIn) {
         // Replace header actions with Bookmarks Link, Settings Link & Log Out button
         headerActions.innerHTML = `
+          <a href="pages/tutorials.html" class="btn-tutorials">
+            <svg viewBox="0 0 24 24">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+            App Tutorials
+          </a>
           <a href="pages/bookmarks.html" class="btn-bookmarks">
             <svg viewBox="0 0 24 24">
               <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
