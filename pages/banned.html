@@ -3,10 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Log In - Nokva Marketplace</title>
-  <script>
-    // If user is already logged in, redirect them to index or let them log out
-  </script>
+  <title>Account Banned - Nokva Marketplace</title>
   <style>
     /* Reset & Base Styles */
     * {
@@ -19,6 +16,9 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       background-color: #f8f9fa;
       color: #2b2b2b;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
       line-height: 1.5;
     }
 
@@ -27,9 +27,6 @@
       background-color: #ffffff;
       border-bottom: 1px solid #eaeaea;
       padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -47,121 +44,140 @@
       color: #e63946;
     }
 
-    .back-link {
-      color: #666;
+    .btn-logout {
+      color: #1a1a1a;
       text-decoration: none;
       font-size: 0.9rem;
-      font-weight: 500;
-      transition: color 0.2s ease;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
     }
 
-    .back-link:hover {
+    .btn-logout:hover {
       color: #e63946;
+      background-color: #f8f9fa;
     }
 
-    /* Form Container */
+    /* Error Card Container */
     .container {
-      max-width: 450px;
-      margin: 4rem auto;
-      padding: 0 1.5rem;
+      max-width: 580px;
+      margin: auto;
+      padding: 2rem 1.5rem;
+      width: 100%;
     }
 
-    .form-card {
+    .banned-card {
       background-color: #ffffff;
       border-radius: 12px;
-      padding: 2.5rem 2rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    }
-
-    .form-title {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: #111;
+      padding: 3rem 2rem;
       text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border: 1px solid #eaeaea;
     }
 
-    .form-subtitle {
-      font-size: 0.9rem;
+    .banned-icon {
+      background-color: #ffe3e3;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem auto;
+    }
+
+    .banned-icon svg {
+      width: 40px;
+      height: 40px;
+      stroke: #e63946;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .banned-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 0.75rem;
+    }
+
+    .banned-description {
+      font-size: 0.95rem;
       color: #666;
       margin-bottom: 2rem;
-      text-align: center;
+      line-height: 1.6;
     }
 
-    /* Form Elements */
-    .form-group {
-      margin-bottom: 1.25rem;
-    }
-
-    label {
-      display: block;
-      font-size: 0.875rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-      color: #333;
-    }
-
-    input[type="email"],
-    input[type="password"] {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1px solid #d1d5db;
+    /* Info list */
+    .banned-details {
+      background-color: #f8f9fa;
+      border: 1px solid #eaeaea;
       border-radius: 8px;
-      font-size: 0.95rem;
-      font-family: inherit;
-      background-color: #fafafa;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: left;
     }
 
-    input:focus {
-      outline: none;
-      border-color: #e63946;
-      background-color: #fff;
-      box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15);
+    .banned-details h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 0.75rem;
     }
 
-    /* Submit Button */
-    .btn-submit {
-      width: 100%;
+    .banned-details p {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 0.5rem;
+    }
+
+    .banned-details p strong {
+      color: #111;
+    }
+
+    /* Button Actions */
+    .action-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
       background-color: #e63946;
       color: #ffffff;
-      border: none;
-      padding: 0.9rem;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 1rem;
-      transition: background-color 0.2s ease, transform 0.1s ease;
     }
 
-    .btn-submit:hover {
+    .btn-primary:hover {
       background-color: #d62828;
     }
 
-    .btn-submit:active {
-      transform: scale(0.99);
+    .btn-secondary {
+      background-color: #1a1a1a;
+      color: #ffffff;
     }
 
-    /* Extra links inside card */
-    .form-footer {
-      margin-top: 1.5rem;
-      text-align: center;
-      font-size: 0.875rem;
-      color: #666;
+    .btn-secondary:hover {
+      background-color: #333333;
     }
 
-    .form-footer a {
-      color: #e63946;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .form-footer a:hover {
-      text-decoration: underline;
-    }
-
-        /* New Multi-column Footer Styling */
+    /* New Multi-column Footer Styling */
     .footer-container {
       background-color: #ffffff;
       border-top: 1px solid #eaeaea;
@@ -332,37 +348,35 @@
 
   <header>
     <a href="../index.html" class="logo">Nokva<span>.</span> Marketplace</a>
-    <a href="../index.html" class="back-link">&larr; Back to Shop</a>
+    <button id="btn-banned-logout" class="btn-logout">Log Out</button>
   </header>
 
   <main class="container">
-    <div class="form-card">
-      <h1 class="form-title">Welcome Back</h1>
-      <p class="form-subtitle">Log in to manage your orders and profile.</p>
+    <div class="banned-card">
+      <div class="banned-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+          <line x1="12" y1="2" x2="12" y2="12"></line>
+        </svg>
+      </div>
+      <h1 class="banned-title">Account Blocked</h1>
+      <p class="banned-description">Your access to Nokva Marketplace has been restricted due to a violation of our terms of service or community guidelines.</p>
 
-      <form action="/index.html" method="POST" onsubmit="event.preventDefault(); localStorage.setItem('isLoggedIn', 'true'); const emailVal = document.getElementById('email').value || 'john@example.com'; if (emailVal === 'banned@example.com') { localStorage.setItem('isBanned', 'true'); } if (!localStorage.getItem('user_fullname')) { localStorage.setItem('user_fullname', 'John Doe'); } if (!localStorage.getItem('user_email')) { localStorage.setItem('user_email', emailVal); } alert('Logged in successfully!'); if (emailVal === 'banned@example.com') { window.location.href='banned.html'; } else { window.location.href='../index.html'; }">
+      <div class="banned-details">
+        <h3>Suspension Details</h3>
+        <p><strong>Reason:</strong> Violation of Platform Fair Use Policy / Spamming Activity</p>
+        <p><strong>Status:</strong> Permanently Restricted</p>
+        <p><strong>Contact Support Reference:</strong> #BAN-99201</p>
+      </div>
 
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="john@example.com" required>
-        </div>
-
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="••••••••" required>
-        </div>
-
-        <button type="submit" class="btn-submit">Log In</button>
-
-      </form>
-
-      <div class="form-footer">
-        Don't have an account? <a href="signup.html">Sign Up</a>
+      <div class="action-group">
+        <a href="support.html" class="btn btn-primary">Contact Support</a>
+        <button id="btn-banned-clear-logout" class="btn btn-secondary">Log Out & Clear Session</button>
       </div>
     </div>
   </main>
 
-    <footer class="footer-container">
+  <footer class="footer-container">
     <div class="footer-content">
       <div class="footer-col">
         <a href="../index.html" class="footer-logo">Nokva<span>.</span> Marketplace</a>
@@ -418,5 +432,26 @@
     </div>
   </footer>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Handle logging out and clearing user states
+      const handleLogout = () => {
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('isBanned');
+        localStorage.removeItem('user_fullname');
+        localStorage.removeItem('user_email');
+        localStorage.removeItem('user_phone');
+        localStorage.removeItem('user_address');
+        localStorage.removeItem('pref_notifications');
+        localStorage.removeItem('pref_newsletter');
+        localStorage.removeItem('bookmarks');
+        localStorage.removeItem('developer_apps');
+        window.location.href = '../index.html';
+      };
+
+      document.getElementById('btn-banned-logout').addEventListener('click', handleLogout);
+      document.getElementById('btn-banned-clear-logout').addEventListener('click', handleLogout);
+    });
+  </script>
 </body>
 </html>
