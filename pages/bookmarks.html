@@ -637,6 +637,11 @@
   </footer>
 
   <script>
+    // Redirect if banned
+    if (localStorage.getItem('isLoggedIn') === 'true' && localStorage.getItem('isBanned') === 'true') {
+      window.location.href = 'banned.html';
+    }
+
     // Static data containing all items
     const ALL_PRODUCTS = [
       {

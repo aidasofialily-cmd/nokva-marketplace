@@ -571,6 +571,11 @@
   </style>
 
   <script>
+    // Redirect if banned
+    if (localStorage.getItem('isLoggedIn') === 'true' && localStorage.getItem('isBanned') === 'true') {
+      window.location.href = 'banned.html';
+    }
+
     // Auto-select food item based on query parameter
     window.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);

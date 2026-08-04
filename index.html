@@ -696,6 +696,11 @@
   </style>
 
   <script>
+    // Redirect if banned
+    if (localStorage.getItem('isLoggedIn') === 'true' && localStorage.getItem('isBanned') === 'true') {
+      window.location.href = 'pages/banned.html';
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
       const headerActions = document.getElementById('header-actions');
