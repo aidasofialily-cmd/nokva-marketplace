@@ -177,6 +177,92 @@
       background-color: #333333;
     }
 
+    /* Appeal Form Styling */
+    .appeal-card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border: 1px solid #eaeaea;
+    }
+
+    .appeal-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 0.75rem;
+      text-align: center;
+    }
+
+    .appeal-description {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      background-color: #fafafa;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #e63946;
+      background-color: #fff;
+      box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15);
+    }
+
+    .btn-submit-appeal {
+      width: 100%;
+      background-color: #e63946;
+      color: #ffffff;
+      border: none;
+      padding: 0.9rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn-submit-appeal:hover {
+      background-color: #d62828;
+    }
+
+    .btn-submit-appeal:active {
+      transform: scale(0.99);
+    }
+
+    .success-icon {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
     /* New Multi-column Footer Styling */
     .footer-container {
       background-color: #ffffff;
@@ -374,6 +460,40 @@
         <button id="btn-banned-clear-logout" class="btn btn-secondary">Log Out & Clear Session</button>
       </div>
     </div>
+
+    <!-- Appeal Form Container -->
+    <div id="appeal-container" class="appeal-card" style="margin-top: 2rem;">
+      <h2 class="appeal-title">Submit an Appeal</h2>
+      <p class="appeal-description">If you believe this restriction was made in error, please fill out the form below to request a review from our team.</p>
+
+      <form id="appeal-form">
+        <div class="form-group">
+          <label for="appeal-name">Full Name</label>
+          <input type="text" id="appeal-name" name="appeal-name" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label for="appeal-email">Email Address</label>
+          <input type="email" id="appeal-email" name="appeal-email" placeholder="john@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="appeal-statement">Why should your account be reinstated?</label>
+          <textarea id="appeal-statement" name="appeal-statement" rows="5" placeholder="Explain your case here..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-submit-appeal">Submit Appeal</button>
+      </form>
+    </div>
+
+    <!-- Appeal Success State -->
+    <div id="appeal-success-status" class="appeal-card" style="margin-top: 2rem; display: none;">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" width="40" height="40" stroke="#2a9d8f" fill="none" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      </div>
+      <h2 class="appeal-title" style="color: #2a9d8f;">Appeal Submitted Successfully</h2>
+      <p class="appeal-description">Your appeal has been received. Our support team is currently reviewing your request. We will notify you via email once a decision has been reached.</p>
+    </div>
   </main>
 
   <footer class="footer-container">
@@ -443,11 +563,50 @@
         }
       }
 
+      // Prefill Name and Email in appeal form if available
+      const appealNameInput = document.getElementById('appeal-name');
+      const appealEmailInput = document.getElementById('appeal-email');
+      if (appealNameInput) {
+        appealNameInput.value = localStorage.getItem('user_fullname') || '';
+      }
+      if (appealEmailInput) {
+        appealEmailInput.value = localStorage.getItem('user_email') || '';
+      }
+
+      // Check if appeal has already been submitted
+      const appealContainer = document.getElementById('appeal-container');
+      const successStatus = document.getElementById('appeal-success-status');
+
+      const checkAppealState = () => {
+        if (localStorage.getItem('appeal_submitted') === 'true') {
+          if (appealContainer) appealContainer.style.display = 'none';
+          if (successStatus) successStatus.style.display = 'block';
+        } else {
+          if (appealContainer) appealContainer.style.display = 'block';
+          if (successStatus) successStatus.style.display = 'none';
+        }
+      };
+
+      checkAppealState();
+
+      // Handle Form Submission
+      const appealForm = document.getElementById('appeal-form');
+      if (appealForm) {
+        appealForm.addEventListener('submit', (event) => {
+          event.preventDefault();
+
+          localStorage.setItem('appeal_submitted', 'true');
+          alert('Appeal submitted successfully! Our support team will review your request.');
+          checkAppealState();
+        });
+      }
+
       // Handle logging out and clearing user states
       const handleLogout = () => {
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('isBanned');
         localStorage.removeItem('banned_reason');
+        localStorage.removeItem('appeal_submitted');
         localStorage.removeItem('user_fullname');
         localStorage.removeItem('user_email');
         localStorage.removeItem('user_phone');
