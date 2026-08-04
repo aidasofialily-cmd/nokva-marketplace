@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Customer Support - Nokva Marketplace</title>
+  <title>Terms of Service - Nokva Marketplace</title>
   <style>
     /* Reset & Base Styles */
     * {
@@ -148,147 +148,70 @@
 
     /* Container */
     .container {
-      max-width: 1000px;
+      max-width: 800px;
       margin: 3rem auto;
       padding: 0 1.5rem;
     }
 
-    /* Hero Section */
-    .hero-section {
+    /* Legal Content Styling */
+    .legal-card {
       background-color: #ffffff;
       border-radius: 12px;
-      padding: 3rem 2rem;
-      text-align: center;
+      padding: 3rem 2.5rem;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      margin-bottom: 2.5rem;
+      border: 1px solid #eaeaea;
     }
 
-    .hero-title {
+    .legal-title {
       font-size: 2.2rem;
       font-weight: 800;
       color: #111;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
     }
 
-    .hero-subtitle {
-      font-size: 1.1rem;
+    .legal-subtitle {
+      font-size: 1rem;
       color: #666;
-      max-width: 700px;
-      margin: 0 auto;
+      margin-bottom: 2.5rem;
+      text-align: center;
+      font-style: italic;
     }
 
-    /* Grid Layout for FAQ and Contact Form */
-    .support-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
+    .legal-section {
+      margin-bottom: 2rem;
     }
 
-    @media (min-width: 768px) {
-      .support-grid {
-        grid-template-columns: 3fr 2fr;
-      }
-    }
-
-    .section-title {
+    .legal-section h2 {
       font-size: 1.4rem;
       font-weight: 700;
       color: #111;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.75rem;
+      border-bottom: 2px solid #f1f1f1;
+      padding-bottom: 0.25rem;
     }
 
-    /* FAQs Styling */
-    .faq-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    .faq-item {
-      background-color: #ffffff;
-      border-radius: 10px;
-      padding: 1.5rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-      border: 1px solid #eaeaea;
-    }
-
-    .faq-question {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #1a1a1a;
-      margin-bottom: 0.5rem;
-    }
-
-    .faq-answer {
+    .legal-section p {
       font-size: 0.95rem;
-      color: #555;
+      color: #444;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .legal-section ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    .legal-section ul li {
+      margin-bottom: 0.5rem;
       line-height: 1.6;
     }
 
-    /* Form Card Styling */
-    .contact-card {
-      background-color: #ffffff;
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      border: 1px solid #eaeaea;
-    }
-
-    .form-group {
-      margin-bottom: 1.25rem;
-    }
-
-    label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-      color: #333;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    textarea {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1px solid #d1d5db;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-family: inherit;
-      background-color: #fafafa;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    input:focus,
-    textarea:focus {
-      outline: none;
-      border-color: #e63946;
-      background-color: #fff;
-      box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15);
-    }
-
-    .btn-submit {
-      width: 100%;
-      background-color: #e63946;
-      color: #ffffff;
-      border: none;
-      padding: 0.9rem;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.2s ease, transform 0.1s ease;
-    }
-
-    .btn-submit:hover {
-      background-color: #d62828;
-    }
-
-    .btn-submit:active {
-      transform: scale(0.99);
-    }
-
-    /* New Multi-column Footer Styling */
+    /* Footer Styling */
     .footer-container {
       background-color: #ffffff;
       border-top: 1px solid #eaeaea;
@@ -467,62 +390,35 @@
   </header>
 
   <main class="container">
-    <!-- Hero Section -->
-    <section class="hero-section">
-      <h1 class="hero-title">Customer Support Hub</h1>
-      <p class="hero-subtitle">We are here to help you. Find answers in our FAQs or get in touch with our support team.</p>
-    </section>
+    <article class="legal-card">
+      <h1 class="legal-title">Terms of Service</h1>
+      <p class="legal-subtitle">Last updated: August 4, 2026</p>
 
-    <div class="support-grid">
-      <!-- FAQ Section -->
-      <section>
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <div class="faq-list">
-          <div class="faq-item">
-            <h3 class="faq-question">How can I track my food order?</h3>
-            <p class="faq-answer">Once your order is placed, you can contact our support team or delivery courier directly with your order details. We are currently working on real-time client-side tracking features!</p>
-          </div>
-          <div class="faq-item">
-            <h3 class="faq-question">What payment methods do you accept?</h3>
-            <p class="faq-answer">We currently accept cash on delivery (COD), credit/debit cards, and local online banking transfers.</p>
-          </div>
-          <div class="faq-item">
-            <h3 class="faq-question">How do I save food items to my Bookmarks?</h3>
-            <p class="faq-answer">To use the bookmarks feature, you must first log in or sign up for an account. Once logged in, simply click the bookmark icon (ribbon) on any food card on the homepage.</p>
-          </div>
-          <div class="faq-item">
-            <h3 class="faq-question">Can I register as a platform developer?</h3>
-            <p class="faq-answer">Absolutely! Head over to our Developer Hub, log in to your account, and register your application to generate Client IDs and Client Secrets for integration.</p>
-          </div>
-        </div>
+      <section class="legal-section">
+        <h2>1. Acceptance of Terms</h2>
+        <p>By accessing or using Nokva Marketplace, you agree to be bound by these Terms of Service. If you do not agree to all of the terms and conditions set forth herein, you may not access or use the application.</p>
       </section>
 
-      <!-- Contact Form Section -->
-      <section>
-        <h2 class="section-title">Send a Message</h2>
-        <div class="contact-card">
-          <form id="support-form" onsubmit="submitSupportRequest(event)">
-            <div class="form-group">
-              <label for="fullname">Full Name</label>
-              <input type="text" id="fullname" name="fullname" placeholder="John Doe" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="john@example.com" required>
-            </div>
-            <div class="form-group">
-              <label for="subject">Subject</label>
-              <input type="text" id="subject" name="subject" placeholder="e.g., Order Inquiry" required>
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" placeholder="How can we help you today?" required></textarea>
-            </div>
-            <button type="submit" class="btn-submit">Submit Ticket</button>
-          </form>
-        </div>
+      <section class="legal-section">
+        <h2>2. Use of the Site</h2>
+        <p>Nokva Marketplace is an interactive frontend application designed to showcase and facilitate orders of fresh food and gourmet delicacies. You agree to use this site strictly for lawful purposes, and you will not engage in any activity that disrupts or interferes with the site's functionality.</p>
       </section>
-    </div>
+
+      <section class="legal-section">
+        <h2>3. Developer API Terms</h2>
+        <p>If you register developer applications using our Developer Hub, you are solely responsible for keeping your Client ID and Client Secret secure. You agree to comply with all platform integration standards and will not use the Nokva platform APIs for any malicious or unauthorized purposes.</p>
+      </section>
+
+      <section class="legal-section">
+        <h2>4. Disclaimer of Warranties</h2>
+        <p>Nokva Marketplace is hosted as a static site on GitHub Pages. It is provided on an "as is" and "as available" basis. We make no warranties, expressed or implied, regarding the continuous availability, safety, or accuracy of the application or the gourmet descriptions presented.</p>
+      </section>
+
+      <section class="legal-section">
+        <h2>5. Modifications to Terms</h2>
+        <p>We reserve the right to revise or update these Terms of Service at any time. Any changes will be posted directly on this page with an updated "Last updated" date. Your continued use of the application constitutes acceptance of the updated Terms.</p>
+      </section>
+    </article>
   </main>
 
   <footer class="footer-container">
@@ -587,17 +483,6 @@
       const headerActions = document.getElementById('header-actions');
 
       if (isLoggedIn) {
-        // Pre-fill Support Form with User Details
-        const fullnameField = document.getElementById('fullname');
-        const emailField = document.getElementById('email');
-
-        const savedFullname = localStorage.getItem('user_fullname');
-        const savedEmail = localStorage.getItem('user_email');
-
-        if (savedFullname) fullnameField.value = savedFullname;
-        if (savedEmail) emailField.value = savedEmail;
-
-        // Replace header actions
         headerActions.innerHTML = `
           <a href="../index.html" class="back-link" style="margin-right: 1rem;">&larr; Back to Shop</a>
           <a href="bookmarks.html" class="btn-bookmarks">
@@ -622,12 +507,6 @@
         });
       }
     });
-
-    function submitSupportRequest(event) {
-      event.preventDefault();
-      alert('Support ticket submitted successfully! We will get back to you soon.');
-      document.getElementById('support-form').reset();
-    }
   </script>
 </body>
 </html>
