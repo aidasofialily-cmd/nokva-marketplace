@@ -98,4 +98,41 @@ test.describe('Banned Account and Blocked User Redirection', () => {
     const isBanned = await page.evaluate(() => localStorage.getItem('isBanned'));
     expect(isBanned).toBeNull();
   });
+
+  test('submitting offensive content on support.html bans the user and redirects to banned.html with custom reason', async ({ page }) => {
+    const supportUrl = `file://${path.resolve(__dirname, 'pages/support.html')}`;
+    await page.goto(supportUrl);
+    await page.evaluate(() => localStorage.clear());
+    await page.reload();
+
+    // Fill form with offensive content
+    await page.fill('#fullname', 'Abusive User');
+    await page.fill('#email', 'abuser@example.com');
+    await page.fill('#subject', 'Some message');
+    await page.fill('#message', 'This message is offensive!');
+
+    // Handle the dialog alert triggered during submission
+    page.once('dialog', async dialog => {
+      expect(dialog.message()).toContain('offensive');
+      await dialog.accept();
+    });
+
+    // Click submit
+    await page.click('button:text("Submit Ticket")');
+
+    // Should redirect to pages/banned.html
+    await page.waitForURL(/banned\.html/);
+    expect(page.url()).toContain('pages/banned.html');
+
+    // Check localStorage has the isBanned state and the specific banned_reason
+    const isBanned = await page.evaluate(() => localStorage.getItem('isBanned'));
+    expect(isBanned).toBe('true');
+
+    const bannedReason = await page.evaluate(() => localStorage.getItem('banned_reason'));
+    expect(bannedReason).toContain('Offensive');
+
+    // Check that pages/banned.html displays the dynamic banned reason
+    const displayedReason = await page.textContent('#banned-reason-text');
+    expect(displayedReason).toContain('Offensive');
+  });
 });

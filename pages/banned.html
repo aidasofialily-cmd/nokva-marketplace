@@ -364,7 +364,7 @@
 
       <div class="banned-details">
         <h3>Suspension Details</h3>
-        <p><strong>Reason:</strong> Violation of Platform Fair Use Policy / Spamming Activity</p>
+        <p><strong>Reason:</strong> <span id="banned-reason-text">Violation of Platform Fair Use Policy / Spamming Activity</span></p>
         <p><strong>Status:</strong> Permanently Restricted</p>
         <p><strong>Contact Support Reference:</strong> #BAN-99201</p>
       </div>
@@ -434,10 +434,20 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Check if there is a custom ban reason
+      const bannedReason = localStorage.getItem('banned_reason');
+      if (bannedReason) {
+        const reasonElement = document.getElementById('banned-reason-text');
+        if (reasonElement) {
+          reasonElement.textContent = bannedReason;
+        }
+      }
+
       // Handle logging out and clearing user states
       const handleLogout = () => {
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('isBanned');
+        localStorage.removeItem('banned_reason');
         localStorage.removeItem('user_fullname');
         localStorage.removeItem('user_email');
         localStorage.removeItem('user_phone');
