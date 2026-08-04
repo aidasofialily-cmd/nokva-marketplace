@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terms of Service - Nokva Marketplace</title>
+  <title>App Tutorials - Nokva Marketplace</title>
   <style>
     /* Reset & Base Styles */
     * {
@@ -106,32 +106,6 @@
       border-radius: 6px;
       transition: color 0.2s ease, background-color 0.2s ease;
     }
-    .btn-tutorials {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      color: #1a1a1a;
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 600;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      transition: color 0.2s ease, background-color 0.2s ease;
-    }
-
-    .btn-tutorials:hover {
-      color: #e63946;
-      background-color: #f8f9fa;
-    }
-
-    .btn-tutorials svg {
-      width: 18px;
-      height: 18px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-    }
-
 
     .btn-bookmarks:hover {
       color: #e63946;
@@ -172,69 +146,168 @@
       stroke-width: 2;
     }
 
+    .btn-tutorials {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #e63946; /* highlighted style for the current page */
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .btn-tutorials:hover {
+      background-color: #f8f9fa;
+    }
+
+    .btn-tutorials svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: #e63946;
+      stroke-width: 2;
+    }
+
     /* Container */
     .container {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 3rem auto;
       padding: 0 1.5rem;
     }
 
-    /* Legal Content Styling */
-    .legal-card {
+    /* Hero Section */
+    .hero-section {
       background-color: #ffffff;
       border-radius: 12px;
-      padding: 3rem 2.5rem;
+      padding: 3rem 2rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Tutorials Grid / List */
+    .tutorials-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .tutorial-card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 2.5rem;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       border: 1px solid #eaeaea;
     }
 
-    .legal-title {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: #111;
-      margin-bottom: 0.5rem;
-      text-align: center;
-    }
-
-    .legal-subtitle {
-      font-size: 1rem;
-      color: #666;
-      margin-bottom: 2.5rem;
-      text-align: center;
-      font-style: italic;
-    }
-
-    .legal-section {
-      margin-bottom: 2rem;
-    }
-
-    .legal-section h2 {
-      font-size: 1.4rem;
+    .tutorial-card h2 {
+      font-size: 1.5rem;
       font-weight: 700;
       color: #111;
-      margin-bottom: 0.75rem;
-      border-bottom: 2px solid #f1f1f1;
-      padding-bottom: 0.25rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
     }
 
-    .legal-section p {
-      font-size: 0.95rem;
-      color: #444;
-      line-height: 1.7;
-      margin-bottom: 1rem;
+    .tutorial-card h2 svg {
+      width: 24px;
+      height: 24px;
+      stroke: #e63946;
+      fill: none;
+      stroke-width: 2;
     }
 
-    .legal-section ul {
-      list-style-type: disc;
-      padding-left: 1.5rem;
-      margin-bottom: 1rem;
-      font-size: 0.95rem;
-      color: #444;
+    .tutorial-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
     }
 
-    .legal-section ul li {
+    .tutorial-step h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1a1a1a;
       margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .step-number {
+      background-color: #ffe3e3;
+      color: #e63946;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .tutorial-step p {
+      font-size: 0.95rem;
+      color: #555;
       line-height: 1.6;
+      padding-left: 2rem;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background-color: #ffe3e3;
+      border: 1px solid #ffb3b3;
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .cta-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #d62828;
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-text {
+      font-size: 0.95rem;
+      color: #c94a4a;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-cta {
+      background-color: #e63946;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.75rem 1.75rem;
+      border-radius: 6px;
+      display: inline-block;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-cta:hover {
+      background-color: #d62828;
     }
 
     /* Footer Styling */
@@ -410,48 +483,103 @@
     <a href="../index.html" class="logo">Nokva<span>.</span> Marketplace</a>
     <div class="header-actions" id="header-actions">
       <a href="../index.html" class="back-link" style="margin-right: 1rem;">&larr; Back to Shop</a>
-      <a href="tutorials.html" class="btn-tutorials">
-            <svg viewBox="0 0 24 24">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-            </svg>
-            App Tutorials
-          </a>
-          <a href="login.html" class="btn-login">Log In</a>
+      <a href="login.html" class="btn-login">Log In</a>
       <a href="signup.html" class="btn-signup">Sign Up</a>
     </div>
   </header>
 
   <main class="container">
-    <article class="legal-card">
-      <h1 class="legal-title">Terms of Service</h1>
-      <p class="legal-subtitle">Last updated: August 4, 2026</p>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <h1 class="hero-title">App Tutorials & Guides</h1>
+      <p class="hero-subtitle">Learn how to browse fresh food, place orders, save favorites to your bookmarks, and register developer applications.</p>
+    </section>
 
-      <section class="legal-section">
-        <h2>1. Acceptance of Terms</h2>
-        <p>By accessing or using Nokva Marketplace, you agree to be bound by these Terms of Service. If you do not agree to all of the terms and conditions set forth herein, you may not access or use the application.</p>
-      </section>
+    <div class="tutorials-list">
+      <!-- Tutorial 1 -->
+      <article class="tutorial-card">
+        <h2>
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="7" height="9" rx="1"></rect>
+            <rect x="14" y="3" width="7" height="5" rx="1"></rect>
+            <rect x="14" y="12" width="7" height="9" rx="1"></rect>
+            <rect x="3" y="16" width="7" height="5" rx="1"></rect>
+          </svg>
+          Gourmet Shop & Placing Orders
+        </h2>
+        <div class="tutorial-steps">
+          <div class="tutorial-step">
+            <h3><span class="step-number">1</span> Browse the Shop Menu</h3>
+            <p>On the homepage, you will find a curated selection of fresh dishes, ranging from artisan burgers to classic pizzas and fresh beverages. Each item card lists a description, tags, and pricing details.</p>
+          </div>
+          <div class="tutorial-step">
+            <h3><span class="step-number">2</span> Login or Register to Place Orders</h3>
+            <p>If you click "Order Now" while signed out, you will be prompted to create an account first. Sign up or log in to access the secure client-side order form.</p>
+          </div>
+          <div class="tutorial-step">
+            <h3><span class="step-number">3</span> Complete Your Order</h3>
+            <p>Once logged in, click "Order Now" on your preferred dish. The page will automatically pre-select your item. Fill in your quantity, choose between pickup or delivery, review your address, and hit "Confirm Order".</p>
+          </div>
+        </div>
+      </article>
 
-      <section class="legal-section">
-        <h2>2. Use of the Site</h2>
-        <p>Nokva Marketplace is an interactive frontend application designed to showcase and facilitate orders of fresh food and gourmet delicacies. You agree to use this site strictly for lawful purposes, and you will not engage in any activity that disrupts or interferes with the site's functionality.</p>
-      </section>
+      <!-- Tutorial 2 -->
+      <article class="tutorial-card">
+        <h2>
+          <svg viewBox="0 0 24 24">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+          </svg>
+          Bookmarks & Account Settings
+        </h2>
+        <div class="tutorial-steps">
+          <div class="tutorial-step">
+            <h3><span class="step-number">1</span> Bookmarking Items</h3>
+            <p>Logged-in users can click the ribbon/bookmark icon located in the upper-right corner of each food card. Bookmarked items will sync automatically with your local storage session.</p>
+          </div>
+          <div class="tutorial-step">
+            <h3><span class="step-number">2</span> View Bookmarked Items</h3>
+            <p>Access your curated list at any time by clicking "Bookmarks" in the top header navigation or in the website footer. You can easily click "Order Now" on your bookmarked items, or click the bookmark ribbon again to remove them.</p>
+          </div>
+          <div class="tutorial-step">
+            <h3><span class="step-number">3</span> Personalize Account Settings</h3>
+            <p>Go to the "Settings" page in the header menu to update your profile metadata, phone number, default address, and newsletter preferences. You can also completely delete your client-side profile from settings.</p>
+          </div>
+        </div>
+      </article>
 
-      <section class="legal-section">
-        <h2>3. Developer API Terms</h2>
-        <p>If you register developer applications using our Developer Hub, you are solely responsible for keeping your Client ID and Client Secret secure. You agree to comply with all platform integration standards and will not use the Nokva platform APIs for any malicious or unauthorized purposes.</p>
-      </section>
+      <!-- Tutorial 3 -->
+      <article class="tutorial-card">
+        <h2>
+          <svg viewBox="0 0 24 24">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+          Developer Hub Integration
+        </h2>
+        <div class="tutorial-steps">
+          <div class="tutorial-step">
+            <h3><span class="step-number">1</span> Visit the Developer Hub</h3>
+            <p>Nokva Marketplace provides open culinary APIs. Locate the "Developers" link in the footer or the header actions to navigate to our interactive Developer Hub.</p>
+          </div>
+          <div class="tutorial-step">
+            <h3><span class="step-number">2</span> Register a Developer Application</h3>
+            <p>Provide an application name, description, and redirect URI callback. Upon registration, Nokva generates a secure, randomized Client ID and Client Secret for authorization flows.</p>
+          </div>
+          <div class="tutorial-step">
+            <h3><span class="step-number">3</span> Revoke Credentials</h3>
+            <p>If your application credentials are compromised, or if you no longer require integration, click the "Revoke" button on your application card in the Developer Hub dashboard to permanently invalidate them.</p>
+          </div>
+        </div>
+      </article>
+    </div>
 
-      <section class="legal-section">
-        <h2>4. Disclaimer of Warranties</h2>
-        <p>Nokva Marketplace is hosted as a static site on GitHub Pages. It is provided on an "as is" and "as available" basis. We make no warranties, expressed or implied, regarding the continuous availability, safety, or accuracy of the application or the gourmet descriptions presented.</p>
-      </section>
-
-      <section class="legal-section">
-        <h2>5. Modifications to Terms</h2>
-        <p>We reserve the right to revise or update these Terms of Service at any time. Any changes will be posted directly on this page with an updated "Last updated" date. Your continued use of the application constitutes acceptance of the updated Terms.</p>
-      </section>
-    </article>
+    <!-- CTA Support -->
+    <section class="cta-section">
+      <h2 class="cta-title">Need Extra Assistance?</h2>
+      <p class="cta-text">If you encounter any bugs or have custom questions, feel free to submit a support ticket to our team.</p>
+      <a href="support.html" class="btn-cta">Contact Support Hub</a>
+    </section>
   </main>
 
   <footer class="footer-container">
@@ -480,6 +608,7 @@
           <li><a href="settings.html">Account Settings</a></li>
           <li><a href="developers.html">Developers</a></li>
           <li><a href="support.html">Customer Support</a></li>
+          <li><a href="tutorials.html">App Tutorials</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -511,6 +640,11 @@
   </footer>
 
   <script>
+    // Redirect if banned
+    if (localStorage.getItem('isLoggedIn') === 'true' && localStorage.getItem('isBanned') === 'true') {
+      window.location.href = 'banned.html';
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
       const headerActions = document.getElementById('header-actions');
@@ -518,7 +652,7 @@
       if (isLoggedIn) {
         headerActions.innerHTML = `
           <a href="../index.html" class="back-link" style="margin-right: 1rem;">&larr; Back to Shop</a>
-      <a href="tutorials.html" class="btn-tutorials">
+          <a href="#" class="btn-tutorials">
             <svg viewBox="0 0 24 24">
               <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
               <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
@@ -543,8 +677,21 @@
 
         document.getElementById('btn-logout').addEventListener('click', () => {
           localStorage.removeItem('isLoggedIn');
-          window.location.reload();
+          window.location.href = '../index.html';
         });
+      } else {
+        headerActions.innerHTML = `
+          <a href="../index.html" class="back-link" style="margin-right: 1rem;">&larr; Back to Shop</a>
+          <a href="#" class="btn-tutorials">
+            <svg viewBox="0 0 24 24">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+            App Tutorials
+          </a>
+          <a href="login.html" class="btn-login">Log In</a>
+          <a href="signup.html" class="btn-signup">Sign Up</a>
+        `;
       }
     });
   </script>
