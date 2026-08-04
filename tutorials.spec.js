@@ -91,4 +91,14 @@ test.describe('App Tutorials Page Integration', () => {
     await page.waitForURL(/banned\.html/);
     expect(page.url()).toContain('pages/banned.html');
   });
+
+  test('verifies "Developing Apps Tutorials" link is present in developers.html footer', async ({ page }) => {
+    const developersUrl = `file://${path.resolve(__dirname, 'pages/developers.html')}`;
+    await page.goto(developersUrl);
+
+    // Verify footer link exists and has the correct attribute
+    const footerLink = page.locator('footer a:text("Developing Apps Tutorials")');
+    await expect(footerLink).toBeVisible();
+    await expect(footerLink).toHaveAttribute('href', 'tutorials.html');
+  });
 });
