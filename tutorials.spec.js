@@ -18,6 +18,15 @@ test.describe('App Tutorials Page Integration', () => {
     await expect(footerLink).toBeVisible();
     await expect(footerLink).toHaveAttribute('href', 'pages/tutorials.html');
 
+    // Verify "Creating Developer Apps Tutorials" footer header is present
+    const footerHeading = page.locator('footer .footer-col h3:text("Creating Developer Apps Tutorials")');
+    await expect(footerHeading).toBeVisible();
+
+    // Verify "Creating Developer Apps Tutorials" link in footer has correct attribute
+    const devTutorialsLink = page.locator('footer .footer-col a:text("Creating Developer Apps Tutorials")');
+    await expect(devTutorialsLink).toBeVisible();
+    await expect(devTutorialsLink).toHaveAttribute('href', 'pages/tutorials.html');
+
     // Screenshot index page with tutorials links
     await page.screenshot({ path: 'index-tutorials-links.png' });
   });
@@ -34,14 +43,15 @@ test.describe('App Tutorials Page Integration', () => {
     const heroSubtitle = page.locator('.hero-subtitle');
     await expect(heroSubtitle).toContainText('Learn how to browse fresh food');
 
-    // Verify all 3 major tutorial cards exist
+    // Verify all 4 major tutorial cards exist
     const cards = page.locator('.tutorial-card');
-    await expect(cards).toHaveCount(3);
+    await expect(cards).toHaveCount(4);
 
     // Check headings
     await expect(cards.nth(0).locator('h2')).toContainText('Gourmet Shop & Placing Orders');
     await expect(cards.nth(1).locator('h2')).toContainText('Bookmarks & Account Settings');
     await expect(cards.nth(2).locator('h2')).toContainText('Developer Hub Integration');
+    await expect(cards.nth(3).locator('h2')).toContainText('Creating Developer Apps Tutorials');
 
     // Header actions should contain login and signup links since logged out
     const logInBtn = page.locator('.header-actions a.btn-login');
@@ -100,5 +110,18 @@ test.describe('App Tutorials Page Integration', () => {
     const footerLink = page.locator('footer a:text("Developing Apps Tutorials")');
     await expect(footerLink).toBeVisible();
     await expect(footerLink).toHaveAttribute('href', 'tutorials.html');
+  });
+
+  test('verifies "Creating Developer Apps Tutorials" footer column and link are present in nested page (tutorials.html) footer', async ({ page }) => {
+    await page.goto(tutorialsUrl);
+
+    // Verify footer column heading exists
+    const footerHeading = page.locator('footer .footer-col h3:text("Creating Developer Apps Tutorials")');
+    await expect(footerHeading).toBeVisible();
+
+    // Verify footer link exists and has correct attribute
+    const devTutorialsLink = page.locator('footer .footer-col a:text("Creating Developer Apps Tutorials")');
+    await expect(devTutorialsLink).toBeVisible();
+    await expect(devTutorialsLink).toHaveAttribute('href', 'tutorials.html');
   });
 });
