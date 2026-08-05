@@ -18,8 +18,8 @@ test.describe('App Tutorials Page Integration', () => {
     await expect(footerLink).toBeVisible();
     await expect(footerLink).toHaveAttribute('href', 'pages/tutorials.html');
 
-    // Verify "Creating Developer Apps Tutorials" footer header is present
-    const footerHeading = page.locator('footer .footer-col h3:text("Creating Developer Apps Tutorials")');
+    // Verify "Tutorials" footer header is present
+    const footerHeading = page.locator('footer .footer-col h3:text("Tutorials")');
     await expect(footerHeading).toBeVisible();
 
     // Verify "Creating Developer Apps Tutorials" link in footer has correct attribute
@@ -112,11 +112,11 @@ test.describe('App Tutorials Page Integration', () => {
     await expect(footerLink).toHaveAttribute('href', 'tutorials.html');
   });
 
-  test('verifies "Creating Developer Apps Tutorials" footer column and link are present in nested page (tutorials.html) footer', async ({ page }) => {
+  test('verifies "Tutorials" footer column and link are present in nested page (tutorials.html) footer', async ({ page }) => {
     await page.goto(tutorialsUrl);
 
     // Verify footer column heading exists
-    const footerHeading = page.locator('footer .footer-col h3:text("Creating Developer Apps Tutorials")');
+    const footerHeading = page.locator('footer .footer-col h3:text("Tutorials")');
     await expect(footerHeading).toBeVisible();
 
     // Verify footer link exists and has correct attribute
