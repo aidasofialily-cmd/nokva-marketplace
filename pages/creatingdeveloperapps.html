@@ -75,11 +75,32 @@
             margin: 1.5rem 0;
             border-radius: 0 4px 4px 0;
         }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 1.5rem;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <a href="../index.html" class="back-btn">&larr; Back to Home Page</a>
     <h1>Creating Developer Applications</h1>
     <p>Learn how to register a developer application on Nokva Marketplace to access REST APIs, handle OAuth2 authentication, and manage merchant webhooks.</p>
 
