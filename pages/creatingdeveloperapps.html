@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial: Creating Developer Apps | Nokva Marketplace</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #0f172a;
+            --border-color: #e2e8f0;
+            --code-bg: #1e293b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 { font-size: 2.25rem; margin-bottom: 0.5rem; color: var(--text-color); }
+        h2 { font-size: 1.5rem; margin-top: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; }
+        p { margin-bottom: 1rem; }
+
+        .step-badge {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            font-weight: bold;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            margin-right: 0.5rem;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            color: #f8fafc;
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.9rem;
+        }
+
+        code {
+            background-color: #e2e8f0;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        pre code { background-color: transparent; padding: 0; color: inherit; }
+
+        .note {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Creating Developer Applications</h1>
+    <p>Learn how to register a developer application on Nokva Marketplace to access REST APIs, handle OAuth2 authentication, and manage merchant webhooks.</p>
+
+    <div class="note">
+        <strong>Prerequisite:</strong> You must have a registered <code>Merchant</code> or <code>Developer</code> account on Nokva Marketplace before registering third-party apps.
+    </div>
+
+    <h2><span class="step-badge">Step 1</span> Access the Developer Portal</h2>
+    <p>Navigate to your account dashboard and select <strong>Developer Apps</strong> under the <em>Integrations</em> menu, or visit <code>/developer/apps</code> directly.</p>
+
+    <h2><span class="step-badge">Step 2</span> Register Your App</h2>
+    <p>Click on <strong>+ Create New Application</strong> and fill out the required application metadata:</p>
+    <ul>
+        <li><strong>App Name:</strong> The public title of your integration (e.g., <em>Nokva Inventory Sync Tool</em>).</li>
+        <li><strong>App Description:</strong> Your main application description or marketing description.</li>
+        <li><strong>OAuth Redirect URI:</strong> The callback URL where authorization codes will be delivered (e.g., <code>https://yourapp.com/api/callback</code>).</li>
+    </ul>
+
+    <h2><span class="step-badge">Step 3</span> Retrieve Client Credentials</h2>
+    <p>Once registered, the developer dashboard will generate a unique pair of credentials:</p>
+    <ul>
+        <li><code>Client ID</code> — Public application identifier.</li>
+        <li><code>Client Secret</code> — Confidential key used to request access tokens.</li>
+    </ul>
+
+    <div class="note">
+        <strong>Security Warning:</strong> Never expose your <code>Client Secret</code> in public Git repositories or frontend client-side code!
+    </div>
+
+    <h2><span class="step-badge">Step 4</span> Authenticate with API Access Tokens</h2>
+    <p>Exchange your client credentials for a bearer token via the Nokva Authentication API endpoint:</p>
+
+<pre><code>POST /api/v1/auth/oauth/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id=YOUR_CLIENT_ID
+&client_secret=YOUR_CLIENT_SECRET
+&scope=read:products write:orders</code></pre>
+
+    <p>Response containing your active bearer access token:</p>
+
+<pre><code>{
+  "access_token": "nokva_at_9876543210abcdef...",
+  "token_type": "Bearer",
+  "expires_in": 3600,
+  "scope": "read:products write:orders"
+}</code></pre>
+
+    <h2><span class="step-badge">Step 5</span> Make Authenticated API Calls</h2>
+    <p>Pass your token in the <code>Authorization</code> header on all subsequent API requests:</p>
+
+<pre><code>curl -X GET "https://api.nokva-marketplace.com/v1/products" \
+  -H "Authorization: Bearer nokva_at_9876543210abcdef..." \
+  -H "Accept: application/json"</code></pre>
+</div>
+
+</body>
+</html>
