@@ -489,6 +489,130 @@
       width: 14px;
       height: 14px;
     }
+
+    /* Skeleton Loading Styles */
+    .skeleton-card {
+      display: none;
+      background-color: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      flex-direction: column;
+    }
+
+    .product-grid.loading .skeleton-card {
+      display: flex;
+    }
+
+    .product-grid.loading .food-card {
+      display: none;
+    }
+
+    .skeleton-image-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 75%; /* 4:3 Aspect Ratio */
+      background: #e2e8f0;
+      overflow: hidden;
+    }
+
+    .skeleton-badge-placeholder {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      width: 60px;
+      height: 20px;
+      background-color: #cbd5e1;
+      border-radius: 20px;
+    }
+
+    .skeleton-content {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: 0.75rem;
+    }
+
+    .skeleton-title-placeholder {
+      width: 70%;
+      height: 1.25rem;
+      background-color: #cbd5e1;
+      border-radius: 4px;
+    }
+
+    .skeleton-desc-line {
+      width: 100%;
+      height: 0.875rem;
+      background-color: #e2e8f0;
+      border-radius: 4px;
+    }
+
+    .skeleton-desc-line.short {
+      width: 60%;
+    }
+
+    .skeleton-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 0.5rem;
+    }
+
+    .skeleton-price-placeholder {
+      width: 50px;
+      height: 1.5rem;
+      background-color: #cbd5e1;
+      border-radius: 4px;
+    }
+
+    .skeleton-button-placeholder {
+      width: 90px;
+      height: 2.25rem;
+      background-color: #cbd5e1;
+      border-radius: 6px;
+    }
+
+    .skeleton-image-wrapper,
+    .skeleton-badge-placeholder,
+    .skeleton-title-placeholder,
+    .skeleton-desc-line,
+    .skeleton-price-placeholder,
+    .skeleton-button-placeholder {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Shimmer Animation */
+    .skeleton-image-wrapper::after,
+    .skeleton-badge-placeholder::after,
+    .skeleton-title-placeholder::after,
+    .skeleton-desc-line::after,
+    .skeleton-price-placeholder::after,
+    .skeleton-button-placeholder::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transform: translateX(-100%);
+      background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.4) 20%,
+        rgba(255, 255, 255, 0.6) 60%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      animation: shimmer-anim 1.5s infinite;
+      content: '';
+    }
+
+    @keyframes shimmer-anim {
+      100% {
+        transform: translateX(100%);
+      }
+    }
   </style>
   <!-- Mobile Menu CSS -->
   <style>
@@ -654,7 +778,103 @@
   <main class="container">
     <h1 class="shop-title">Fresh Food & Delicacies</h1>
 
-    <div class="product-grid">
+    <div class="product-grid loading" id="product-grid">
+
+      <!-- Skeleton Card 1 -->
+      <div class="skeleton-card" aria-hidden="true">
+        <div class="skeleton-image-wrapper">
+          <div class="skeleton-badge-placeholder"></div>
+        </div>
+        <div class="skeleton-content">
+          <div class="skeleton-title-placeholder"></div>
+          <div class="skeleton-desc-line"></div>
+          <div class="skeleton-desc-line short"></div>
+          <div class="skeleton-footer">
+            <div class="skeleton-price-placeholder"></div>
+            <div class="skeleton-button-placeholder"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skeleton Card 2 -->
+      <div class="skeleton-card" aria-hidden="true">
+        <div class="skeleton-image-wrapper">
+          <div class="skeleton-badge-placeholder"></div>
+        </div>
+        <div class="skeleton-content">
+          <div class="skeleton-title-placeholder"></div>
+          <div class="skeleton-desc-line"></div>
+          <div class="skeleton-desc-line short"></div>
+          <div class="skeleton-footer">
+            <div class="skeleton-price-placeholder"></div>
+            <div class="skeleton-button-placeholder"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skeleton Card 3 -->
+      <div class="skeleton-card" aria-hidden="true">
+        <div class="skeleton-image-wrapper">
+          <div class="skeleton-badge-placeholder"></div>
+        </div>
+        <div class="skeleton-content">
+          <div class="skeleton-title-placeholder"></div>
+          <div class="skeleton-desc-line"></div>
+          <div class="skeleton-desc-line short"></div>
+          <div class="skeleton-footer">
+            <div class="skeleton-price-placeholder"></div>
+            <div class="skeleton-button-placeholder"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skeleton Card 4 -->
+      <div class="skeleton-card" aria-hidden="true">
+        <div class="skeleton-image-wrapper">
+          <div class="skeleton-badge-placeholder"></div>
+        </div>
+        <div class="skeleton-content">
+          <div class="skeleton-title-placeholder"></div>
+          <div class="skeleton-desc-line"></div>
+          <div class="skeleton-desc-line short"></div>
+          <div class="skeleton-footer">
+            <div class="skeleton-price-placeholder"></div>
+            <div class="skeleton-button-placeholder"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skeleton Card 5 -->
+      <div class="skeleton-card" aria-hidden="true">
+        <div class="skeleton-image-wrapper">
+          <div class="skeleton-badge-placeholder"></div>
+        </div>
+        <div class="skeleton-content">
+          <div class="skeleton-title-placeholder"></div>
+          <div class="skeleton-desc-line"></div>
+          <div class="skeleton-desc-line short"></div>
+          <div class="skeleton-footer">
+            <div class="skeleton-price-placeholder"></div>
+            <div class="skeleton-button-placeholder"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skeleton Card 6 -->
+      <div class="skeleton-card" aria-hidden="true">
+        <div class="skeleton-image-wrapper">
+          <div class="skeleton-badge-placeholder"></div>
+        </div>
+        <div class="skeleton-content">
+          <div class="skeleton-title-placeholder"></div>
+          <div class="skeleton-desc-line"></div>
+          <div class="skeleton-desc-line short"></div>
+          <div class="skeleton-footer">
+            <div class="skeleton-price-placeholder"></div>
+            <div class="skeleton-button-placeholder"></div>
+          </div>
+        </div>
+      </div>
 
       <!-- Card 1 -->
       <article class="food-card">
@@ -879,6 +1099,14 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      // Setup ghost loading timeout to transition skeleton cards to actual food items
+      setTimeout(() => {
+        const grid = document.getElementById('product-grid');
+        if (grid) {
+          grid.classList.remove('loading');
+        }
+      }, 1000);
+
       const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
       const headerActions = document.getElementById('header-actions');
 
