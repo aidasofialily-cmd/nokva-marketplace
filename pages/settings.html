@@ -830,6 +830,56 @@
           <a href="developers.html#my-apps-section" class="btn-manage-dev">Register or Manage Apps</a>
         </div>
 
+        <!-- Try Marketing Account Section -->
+        <div class="marketing-zone" id="marketing-zone" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #eaeaea;">
+          <h2 class="marketing-title" style="font-size: 1.25rem; font-weight: 700; color: #1a1a1a; margin-bottom: 0.5rem;">Try Marketing Account</h2>
+          <p class="marketing-desc" style="font-size: 0.9rem; color: #666; margin-bottom: 1.25rem;">Unlock marketing features to promote your culinary brand and track ad campaigns.</p>
+
+          <!-- Inactive State -->
+          <div id="marketing-inactive-view" style="display: block;">
+            <div style="background-color: #f8f9fa; border: 1px dashed #ccc; padding: 1.5rem; border-radius: 8px; text-align: center; color: #666; font-size: 0.9rem; margin-bottom: 1.5rem;">
+              <p style="margin-bottom: 1rem;">Activate your marketing account to get access to real-time analytics, custom ads, and campaign metrics.</p>
+              <button type="button" id="btn-activate-marketing" class="btn-manage-dev" style="border: none; cursor: pointer; font-family: inherit;">Activate Marketing Account</button>
+            </div>
+          </div>
+
+          <!-- Active State -->
+          <div id="marketing-active-view" style="display: none;">
+            <div style="background-color: #f8f9fa; border: 1px solid #eaeaea; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+              <h3 style="font-size: 1.1rem; font-weight: 700; color: #e63946; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2;">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+                Marketing Dashboard Active
+              </h3>
+              <p style="font-size: 0.9rem; color: #555; margin-bottom: 1.25rem;">Your culinary campaigns are running. View your simulated performance metrics below:</p>
+
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
+                <div style="background-color: #ffffff; border: 1px solid #eaeaea; padding: 0.75rem; border-radius: 6px; text-align: center;">
+                  <div style="font-size: 1.25rem; font-weight: 800; color: #1a1a1a;" id="metric-campaigns">3</div>
+                  <div style="font-size: 0.75rem; color: #666; font-weight: 600;">Active Campaigns</div>
+                </div>
+                <div style="background-color: #ffffff; border: 1px solid #eaeaea; padding: 0.75rem; border-radius: 6px; text-align: center;">
+                  <div style="font-size: 1.25rem; font-weight: 800; color: #1a1a1a;" id="metric-impressions">12,450</div>
+                  <div style="font-size: 0.75rem; color: #666; font-weight: 600;">Total Impressions</div>
+                </div>
+                <div style="background-color: #ffffff; border: 1px solid #eaeaea; padding: 0.75rem; border-radius: 6px; text-align: center;">
+                  <div style="font-size: 1.25rem; font-weight: 800; color: #1a1a1a;" id="metric-ctr">4.8%</div>
+                  <div style="font-size: 0.75rem; color: #666; font-weight: 600;">Avg. CTR</div>
+                </div>
+                <div style="background-color: #ffffff; border: 1px solid #eaeaea; padding: 0.75rem; border-radius: 6px; text-align: center;">
+                  <div style="font-size: 1.25rem; font-weight: 800; color: #1a1a1a;" id="metric-conversions">320</div>
+                  <div style="font-size: 0.75rem; color: #666; font-weight: 600;">Conversions</div>
+                </div>
+              </div>
+
+              <button type="button" id="btn-deactivate-marketing" style="background-color: #ffffff; color: #e63946; border: 1px solid #e63946; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: background-color 0.2s; width: 100%;">Deactivate Marketing Account</button>
+            </div>
+          </div>
+        </div>
+
         <!-- Danger Zone -->
         <div class="danger-zone">
           <h2 class="danger-title">Danger Zone</h2>
@@ -1020,6 +1070,40 @@
         // Load registered developer apps
         renderSettingsApps();
 
+        // Try Marketing Account logic
+        const marketingInactiveView = document.getElementById('marketing-inactive-view');
+        const marketingActiveView = document.getElementById('marketing-active-view');
+        const btnActivateMarketing = document.getElementById('btn-activate-marketing');
+        const btnDeactivateMarketing = document.getElementById('btn-deactivate-marketing');
+
+        function updateMarketingView() {
+          const isMarketingActive = localStorage.getItem('user_marketing_account') === 'true';
+          if (isMarketingActive) {
+            marketingInactiveView.style.display = 'none';
+            marketingActiveView.style.display = 'block';
+          } else {
+            marketingInactiveView.style.display = 'block';
+            marketingActiveView.style.display = 'none';
+          }
+        }
+
+        updateMarketingView();
+
+        btnActivateMarketing.addEventListener('click', () => {
+          localStorage.setItem('user_marketing_account', 'true');
+          updateMarketingView();
+          alert('Marketing Account activated successfully!');
+        });
+
+        btnDeactivateMarketing.addEventListener('click', () => {
+          const confirmed = confirm('Are you sure you want to deactivate your marketing account? Your running campaigns will be paused.');
+          if (confirmed) {
+            localStorage.removeItem('user_marketing_account');
+            updateMarketingView();
+            alert('Marketing Account deactivated successfully.');
+          }
+        });
+
         // Delete Account logic
         document.getElementById('btn-delete-account').addEventListener('click', () => {
           const confirmed = confirm("Are you sure you want to delete your account? This action cannot be undone.");
@@ -1033,6 +1117,7 @@
             localStorage.removeItem('pref_newsletter');
             localStorage.removeItem('bookmarks');
             localStorage.removeItem('developer_apps'); // Clean up developer applications as well
+            localStorage.removeItem('user_marketing_account'); // Clean up marketing account as well
 
             alert('Account deleted successfully.');
             window.location.href = '../index.html';
