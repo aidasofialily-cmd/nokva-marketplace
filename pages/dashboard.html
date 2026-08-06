@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Bookmarks - Nokva Marketplace</title>
+  <title>Account Dashboard - Nokva Marketplace</title>
   <style>
     /* Reset & Base Styles */
     * {
@@ -94,11 +94,11 @@
       border-color: #d62828;
     }
 
-    .btn-bookmarks {
+    .btn-dashboard {
       display: flex;
       align-items: center;
       gap: 0.4rem;
-      color: #e63946; /* highlighted style for the current page */
+      color: #e63946; /* highlighted style for current page */
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 600;
@@ -106,7 +106,20 @@
       border-radius: 6px;
       transition: color 0.2s ease, background-color 0.2s ease;
     }
-    .btn-tutorials {
+
+    .btn-dashboard:hover {
+      background-color: #f8f9fa;
+    }
+
+    .btn-dashboard svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: #e63946;
+      stroke-width: 2;
+    }
+
+    .btn-bookmarks {
       display: flex;
       align-items: center;
       gap: 0.4rem;
@@ -119,29 +132,16 @@
       transition: color 0.2s ease, background-color 0.2s ease;
     }
 
-    .btn-tutorials:hover {
-      color: #e63946;
-      background-color: #f8f9fa;
-    }
-
-    .btn-tutorials svg {
-      width: 18px;
-      height: 18px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-    }
-
-
     .btn-bookmarks:hover {
+      color: #e63946;
       background-color: #f8f9fa;
     }
 
     .btn-bookmarks svg {
       width: 18px;
       height: 18px;
-      fill: #e63946;
-      stroke: #e63946;
+      fill: none;
+      stroke: currentColor;
       stroke-width: 2;
     }
 
@@ -171,10 +171,36 @@
       stroke-width: 2;
     }
 
+    .btn-tutorials {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #1a1a1a;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .btn-tutorials:hover {
+      color: #e63946;
+      background-color: #f8f9fa;
+    }
+
+    .btn-tutorials svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
     /* Container */
     .container {
       max-width: 1200px;
-      margin: 2rem auto;
+      margin: 2.5rem auto;
       padding: 0 1.5rem;
     }
 
@@ -198,183 +224,136 @@
       margin-bottom: 2rem;
     }
 
-    .shop-title {
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-      font-weight: 600;
+    /* Dashboard Grid & Cards */
+    .welcome-banner {
+      background: linear-gradient(135deg, #e63946 0%, #d62828 100%);
+      color: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 15px rgba(230, 57, 70, 0.15);
     }
 
-    /* Grid Layout */
-    .product-grid {
+    .welcome-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .welcome-desc {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .dashboard-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 1.75rem;
     }
 
-    /* Food Image Card */
-    .food-card {
+    .dashboard-card {
       background-color: #ffffff;
       border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      padding: 1.75rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      border: 1px solid #eaeaea;
+      display: flex;
+      flex-direction: column;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .dashboard-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-header {
       display: flex;
-      flex-direction: column;
-    }
-
-    .food-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Card Media Area */
-    .card-image-wrapper {
-      position: relative;
-      width: 100%;
-      padding-top: 75%; /* 4:3 Aspect Ratio */
-      overflow: hidden;
-      background-color: #f0f0f0;
-    }
-
-    .card-image-wrapper img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-
-    .food-card:hover .card-image-wrapper img {
-      transform: scale(1.05);
-    }
-
-    /* Tag overlay */
-    .badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background-color: rgba(0, 0, 0, 0.65);
-      color: #ffffff;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      backdrop-filter: blur(4px);
-    }
-
-    /* Bookmark Toggle Button */
-    .btn-bookmark-toggle {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background-color: rgba(255, 255, 255, 0.85);
-      border: none;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
       align-items: center;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      transition: background-color 0.2s, transform 0.2s;
-      z-index: 10;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid #f1f1f1;
+      padding-bottom: 0.75rem;
     }
 
-    .btn-bookmark-toggle:hover {
-      background-color: #ffffff;
-      transform: scale(1.05);
-    }
-
-    .btn-bookmark-toggle svg {
-      width: 18px;
-      height: 18px;
-      fill: none;
-      stroke: #666;
-      stroke-width: 2;
-      transition: fill 0.2s, stroke 0.2s;
-    }
-
-    .btn-bookmark-toggle.bookmarked svg {
-      fill: #e63946;
-      stroke: #e63946;
-    }
-
-    /* Card Details */
-    .card-content {
-      padding: 1.25rem;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-    }
-
-    .food-name {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-      color: #111;
-    }
-
-    .food-description {
-      font-size: 0.875rem;
-      color: #666;
-      margin-bottom: 1rem;
-      flex-grow: 1;
-    }
-
-    .card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: auto;
-    }
-
-    .price {
-      font-size: 1.2rem;
-      font-weight: 700;
+    .card-icon {
+      background-color: #ffe3e3;
       color: #e63946;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .btn-add {
+    .card-icon svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .card-body {
+      flex-grow: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .profile-info-row {
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    .profile-info-row strong {
+      color: #1a1a1a;
+      display: inline-block;
+      width: 90px;
+    }
+
+    .profile-info-row span {
+      color: #555;
+    }
+
+    .stats-value {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #e63946;
+      margin-bottom: 0.25rem;
+    }
+
+    .stats-label {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .card-btn {
+      width: 100%;
       background-color: #1a1a1a;
       color: #ffffff;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
       text-decoration: none;
-      display: inline-block;
-    }
-
-    .btn-add:hover {
-      background-color: #e63946;
-      color: #ffffff;
-    }
-
-    /* Empty state */
-    .empty-state {
+      padding: 0.75rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
       text-align: center;
-      padding: 4rem 2rem;
-      background-color: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      margin-top: 2rem;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      display: inline-block;
+      box-sizing: border-box;
     }
 
-    .empty-state h2 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: #333;
+    .card-btn:hover {
+      background-color: #e63946;
     }
 
-    .empty-state p {
-      color: #666;
-      margin-bottom: 1.5rem;
+    .card-btn:active {
+      transform: scale(0.99);
     }
 
     /* New Multi-column Footer Styling */
@@ -542,33 +521,7 @@
       width: 14px;
       height: 14px;
     }
-
-    .btn-dashboard {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      color: #1a1a1a;
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 600;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      transition: color 0.2s ease, background-color 0.2s ease;
-    }
-
-    .btn-dashboard:hover {
-      color: #e63946;
-      background-color: #f8f9fa;
-    }
-
-    .btn-dashboard svg {
-      width: 18px;
-      height: 18px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-    }
-</style>
+  </style>
   <!-- Mobile Menu CSS -->
   <style>
     /* Mobile Menu Styles */
@@ -724,45 +677,116 @@
 
   <main class="container">
     <!-- Logged-in View -->
-    <div id="bookmarks-logged-in-view" style="display: none;">
-      <h1 class="shop-title">My Bookmarked Items</h1>
-
-      <div class="product-grid" id="product-grid">
-        <!-- Dynamically rendered bookmarked items go here -->
+    <div id="dashboard-logged-in-view" style="display: none;">
+      <div class="welcome-banner">
+        <h1 class="welcome-title" id="welcome-title">Welcome Back, User!</h1>
+        <p class="welcome-desc">Manage your orders, profile settings, saved bookmarks, and developer applications from one place.</p>
       </div>
 
-      <div class="empty-state" id="empty-state" style="display: none;">
-        <h2>No Bookmarks Yet</h2>
-        <p>Explore our menu and bookmark your favorite food items to see them here.</p>
-        <a href="../index.html" class="btn-add">Browse Food Items</a>
+      <div class="dashboard-grid">
+        <!-- Card 1: Profile Summary -->
+        <div class="dashboard-card">
+          <div class="card-header">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </div>
+            <h2 class="card-title">Profile Details</h2>
+          </div>
+          <div class="card-body">
+            <div class="profile-info-row">
+              <strong>Name:</strong> <span id="profile-name">John Doe</span>
+            </div>
+            <div class="profile-info-row">
+              <strong>Email:</strong> <span id="profile-email">john@example.com</span>
+            </div>
+            <div class="profile-info-row">
+              <strong>Phone:</strong> <span id="profile-phone">Not provided</span>
+            </div>
+            <div class="profile-info-row">
+              <strong>Address:</strong> <span id="profile-address">Not provided</span>
+            </div>
+          </div>
+          <a href="settings.html" class="card-btn">Edit Settings</a>
+        </div>
+
+        <!-- Card 2: Bookmarks Summary -->
+        <div class="dashboard-card">
+          <div class="card-header">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+            </div>
+            <h2 class="card-title">Bookmarks</h2>
+          </div>
+          <div class="card-body" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+            <div class="stats-value" id="bookmarks-count">0</div>
+            <div class="stats-label">Saved Food Items</div>
+          </div>
+          <a href="bookmarks.html" class="card-btn">View Bookmarks</a>
+        </div>
+
+        <!-- Card 3: Developer Tools -->
+        <div class="dashboard-card">
+          <div class="card-header">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            </div>
+            <h2 class="card-title">Developer Apps</h2>
+          </div>
+          <div class="card-body" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+            <div class="stats-value" id="apps-count">0</div>
+            <div class="stats-label">Registered Applications</div>
+          </div>
+          <a href="developers.html" class="card-btn">Manage Apps</a>
+        </div>
+
+        <!-- Card 4: Customer Support -->
+        <div class="dashboard-card">
+          <div class="card-header">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            </div>
+            <h2 class="card-title">Need Help?</h2>
+          </div>
+          <div class="card-body">
+            <p style="color: #555; font-size: 0.95rem; margin-bottom: 1rem;">Have questions or need assistance with your order? Our support agents are available 24/7 to assist you.</p>
+            <p style="color: #555; font-size: 0.95rem;">You can also read our quick tutorials to learn how to integrate APIs or customize your workspace.</p>
+          </div>
+          <div style="display: flex; gap: 0.75rem; width: 100%;">
+            <a href="support.html" class="card-btn" style="flex: 1;">Get Support</a>
+            <a href="tutorials.html" class="card-btn" style="flex: 1; background-color: #f1f1f1; color: #1a1a1a;">Tutorials</a>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Logged-out View / Landing Page -->
-    <div id="bookmarks-logged-out-view" style="display: none;">
+    <div id="dashboard-logged-out-view" style="display: none;">
       <div class="form-card" style="text-align: center; max-width: 550px; margin: 0 auto; padding: 3rem 2rem;">
         <div style="background-color: #ffe3e3; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto;">
           <svg viewBox="0 0 24 24" style="width: 40px; height: 40px; stroke: #e63946; fill: none; stroke-width: 2;">
-            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            <rect x="3" y="3" width="7" height="9" rx="1"></rect>
+            <rect x="14" y="3" width="7" height="5" rx="1"></rect>
+            <rect x="14" y="12" width="7" height="9" rx="1"></rect>
+            <rect x="3" y="16" width="7" height="5" rx="1"></rect>
           </svg>
         </div>
-        <h1 class="form-title" style="margin-bottom: 0.75rem;">My Bookmarks</h1>
-        <p class="form-subtitle" style="margin-bottom: 2rem;">Please log in or sign up to view and manage your bookmarked food items, customize your taste profile, and get curated suggestions.</p>
+        <h1 class="form-title" style="margin-bottom: 0.75rem;">Account Dashboard</h1>
+        <p class="form-subtitle" style="margin-bottom: 2rem;">Please log in or sign up to view and manage your Nokva Marketplace account dashboard, delivery addresses, bookmarks, and developer applications.</p>
 
         <div style="background-color: #f8f9fa; border: 1px solid #eaeaea; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; text-align: left;">
-          <h3 style="font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 1rem;">With Bookmarks on Nokva, you can:</h3>
+          <h3 style="font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 1rem;">With an Account Dashboard, you can:</h3>
           <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
             <li style="display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.9rem; color: #555;">
               <span style="color: #e63946; font-weight: bold;">✓</span>
-              <span>Save your favorite food items for quick access later.</span>
+              <span>View a unified overview of your profile and settings.</span>
             </li>
             <li style="display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.9rem; color: #555;">
               <span style="color: #e63946; font-weight: bold;">✓</span>
-              <span>Easily reorder your top dishes in just a couple of clicks.</span>
+              <span>Track your bookmarked items and developer applications count.</span>
             </li>
             <li style="display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.9rem; color: #555;">
               <span style="color: #e63946; font-weight: bold;">✓</span>
-              <span>Keep track of seasonal specialties and new menu items.</span>
+              <span>Quickly access support tickets and tutorials.</span>
             </li>
           </ul>
         </div>
@@ -797,6 +821,7 @@
         <h3>Quick Links</h3>
         <ul>
           <li><a href="../index.html">Shop Menu</a></li>
+          <li class="logged-in-only" style="display: none;"><a href="dashboard.html">Account Dashboard</a></li>
           <li><a href="bookmarks.html">My Bookmarks</a></li>
           <li><a href="settings.html">Account Settings</a></li>
           <li><a href="developers.html">Developers</a></li>
@@ -843,73 +868,26 @@
       window.location.href = 'banned.html';
     }
 
-    // Static data containing all items
-    const ALL_PRODUCTS = [
-      {
-        name: "Artisan Cheeseburger",
-        description: "Double beef patty with melted cheddar, fresh lettuce, and signature sauce on a brioche bun.",
-        price: "$12.50",
-        badge: "Fresh",
-        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "Neapolitan Pizza",
-        description: "Classic stone-baked crust topped with San Marzano tomatoes, fresh mozzarella, and basil.",
-        price: "$16.00",
-        badge: "Popular",
-        image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "Avocado Grain Bowl",
-        description: "Quinoa, sliced avocado, roasted chickpeas, cherry tomatoes, and tahini dressing.",
-        price: "$11.00",
-        badge: "Healthy",
-        image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "Tonkotsu Ramen",
-        description: "Rich pork bone broth, hand-crafted noodles, soft-boiled egg, tender chashu, and scallions.",
-        price: "$14.50",
-        badge: "Chef's Choice",
-        image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "Assorted Glazed Donuts",
-        description: "Selection of handmade artisanal donuts topped with custom glazes and sprinkles.",
-        price: "$8.00",
-        badge: "Dessert",
-        image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "Matcha Cold Brew",
-        description: "Premium Japanese matcha layered over cold brew coffee and sweetened oat milk.",
-        price: "$6.50",
-        badge: "Beverage",
-        image: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80"
-      }
-    ];
-
     document.addEventListener('DOMContentLoaded', () => {
       const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-      if (isLoggedIn) {
-        document.querySelectorAll('.logged-in-only').forEach(el => el.style.display = 'block');
-      }
       const headerActions = document.getElementById('header-actions');
-      const loggedInView = document.getElementById('bookmarks-logged-in-view');
-      const loggedOutView = document.getElementById('bookmarks-logged-out-view');
+      const loggedInView = document.getElementById('dashboard-logged-in-view');
+      const loggedOutView = document.getElementById('dashboard-logged-out-view');
 
       if (isLoggedIn) {
         // Setup header for logged-in user
         headerActions.innerHTML = `
           <a href="../index.html" class="back-link" style="margin-right: 1rem;">&larr; Back to Shop</a>
-      <a href="tutorials.html" class="btn-tutorials">
-        <svg viewBox="0 0 24 24">
-          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-        </svg>
-        App Tutorials
-      </a>
-          <a href="#" class="btn-bookmarks">
+          <a href="dashboard.html" class="btn-dashboard">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="3" width="7" height="9" rx="1"></rect>
+              <rect x="14" y="3" width="7" height="5" rx="1"></rect>
+              <rect x="14" y="12" width="7" height="9" rx="1"></rect>
+              <rect x="3" y="16" width="7" height="5" rx="1"></rect>
+            </svg>
+            Dashboard
+          </a>
+          <a href="bookmarks.html" class="btn-bookmarks">
             <svg viewBox="0 0 24 24">
               <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
             </svg>
@@ -935,12 +913,34 @@
         loggedInView.style.display = 'block';
         loggedOutView.style.display = 'none';
 
-        renderBookmarks();
+        // Load profile values
+        const fullname = localStorage.getItem('user_fullname') || 'John Doe';
+        const email = localStorage.getItem('user_email') || 'john@example.com';
+        const phone = localStorage.getItem('user_phone') || 'Not provided';
+        const address = localStorage.getItem('user_address') || 'Not provided';
+
+        document.getElementById('welcome-title').innerText = `Welcome Back, ${fullname}!`;
+        document.getElementById('profile-name').innerText = fullname;
+        document.getElementById('profile-email').innerText = email;
+        document.getElementById('profile-phone').innerText = phone;
+        document.getElementById('profile-address').innerText = address;
+
+        // Load bookmarks count
+        const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+        document.getElementById('bookmarks-count').innerText = bookmarks.length;
+
+        // Load apps count
+        const apps = JSON.parse(localStorage.getItem('developer_apps') || '[]');
+        document.getElementById('apps-count').innerText = apps.length;
+
+        // Show footers elements for logged-in users only
+        document.querySelectorAll('.logged-in-only').forEach(el => el.style.display = 'block');
+
       } else {
         // Setup header for logged-out user
         headerActions.innerHTML = `
           <a href="../index.html" class="back-link" style="margin-right: 1rem;">&larr; Back to Shop</a>
-      <a href="tutorials.html" class="btn-tutorials">
+          <a href="tutorials.html" class="btn-tutorials">
             <svg viewBox="0 0 24 24">
               <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
               <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
@@ -956,64 +956,6 @@
         loggedOutView.style.display = 'block';
       }
     });
-
-    function renderBookmarks() {
-      const productGrid = document.getElementById('product-grid');
-      const emptyState = document.getElementById('empty-state');
-
-      const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
-
-      // Filter products that are in the bookmarks list
-      const bookmarkedProducts = ALL_PRODUCTS.filter(product => bookmarks.includes(product.name));
-
-      if (bookmarkedProducts.length === 0) {
-        productGrid.style.display = 'none';
-        emptyState.style.display = 'block';
-        return;
-      }
-
-      productGrid.style.display = 'grid';
-      emptyState.style.display = 'none';
-      productGrid.innerHTML = '';
-
-      bookmarkedProducts.forEach(product => {
-        const article = document.createElement('article');
-        article.className = 'food-card';
-        article.innerHTML = `
-          <div class="card-image-wrapper">
-            <span class="badge">${product.badge}</span>
-            <img src="${product.image}" alt="${product.name}">
-            <button class="btn-bookmark-toggle bookmarked" aria-label="Bookmark" data-name="${product.name}">
-              <svg viewBox="0 0 24 24">
-                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-              </svg>
-            </button>
-          </div>
-          <div class="card-content">
-            <h2 class="food-name">${product.name}</h2>
-            <p class="food-description">${product.description}</p>
-            <div class="card-footer">
-              <span class="price">${product.price}</span>
-              <a href="order.html?item=${encodeURIComponent(product.name)}" class="btn-add">Order Now</a>
-            </div>
-          </div>
-        `;
-
-        // Click handler to remove bookmark
-        const btnToggle = article.querySelector('.btn-bookmark-toggle');
-        btnToggle.addEventListener('click', (e) => {
-          e.preventDefault();
-          let currentBookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
-          currentBookmarks = currentBookmarks.filter(name => name !== product.name);
-          localStorage.setItem('bookmarks', JSON.stringify(currentBookmarks));
-
-          // Re-render
-          renderBookmarks();
-        });
-
-        productGrid.appendChild(article);
-      });
-    }
   </script>
 
   <!-- Mobile Menu Overlay -->
@@ -1055,9 +997,6 @@
 
       // Dynamic Mobile Links Rendering
       const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-      if (isLoggedIn) {
-        document.querySelectorAll('.logged-in-only').forEach(el => el.style.display = 'block');
-      }
       const isBanned = localStorage.getItem('isBanned') === 'true';
       const linksContainer = document.getElementById('mobile-menu-links');
 
