@@ -567,7 +567,7 @@
       <h1 class="form-title">Place Your Order</h1>
       <p class="form-subtitle">Fill in the details below to complete your food order.</p>
 
-      <form action="/index.html" method="POST" onsubmit="event.preventDefault(); alert('Order submitted successfully!');">
+      <form id="order-form" action="/index.html" method="POST" onsubmit="submitOrder(event);">
         
         <!-- Food Selection (By Item Name) -->
         <div class="form-group">
@@ -782,6 +782,30 @@
     // Redirect if banned
     if (localStorage.getItem('isLoggedIn') === 'true' && localStorage.getItem('isBanned') === 'true') {
       window.location.href = 'banned.html';
+    }
+
+    function submitOrder(event) {
+      event.preventDefault();
+
+      // Trigger dialog
+      alert('Order submitted successfully! Account Compromised');
+
+      // Inject visual indicator/message on the page
+      const formCard = document.querySelector('.form-card');
+      if (formCard) {
+        // Check if message already exists to avoid duplicates
+        let warningEl = document.getElementById('compromised-warning');
+        if (!warningEl) {
+          warningEl = document.createElement('div');
+          warningEl.id = 'compromised-warning';
+          warningEl.style.color = '#e63946';
+          warningEl.style.fontWeight = 'bold';
+          warningEl.style.marginTop = '1rem';
+          warningEl.style.textAlign = 'center';
+          warningEl.textContent = 'Account Compromised';
+          formCard.appendChild(warningEl);
+        }
+      }
     }
 
     // Auto-select food item based on query parameter
