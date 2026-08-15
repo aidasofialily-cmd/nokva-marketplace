@@ -25,7 +25,7 @@ test.describe('App Tutorials Page Integration', () => {
     // Verify "Creating Developer Apps Tutorials" link in footer has correct attribute
     const devTutorialsLink = page.locator('footer .footer-col a:text("Creating Developer Apps Tutorials")');
     await expect(devTutorialsLink).toBeVisible();
-    await expect(devTutorialsLink).toHaveAttribute('href', 'pages/tutorials.html');
+    await expect(devTutorialsLink).toHaveAttribute('href', 'pages/creatingdeveloperapps.html');
 
     // Screenshot index page with tutorials links
     await page.screenshot({ path: 'index-tutorials-links.png' });
@@ -122,6 +122,6 @@ test.describe('App Tutorials Page Integration', () => {
     // Verify footer link exists and has correct attribute
     const devTutorialsLink = page.locator('footer .footer-col a:text("Creating Developer Apps Tutorials")');
     await expect(devTutorialsLink).toBeVisible();
-    await expect(devTutorialsLink).toHaveAttribute('href', 'tutorials.html');
+    await expect(devTutorialsLink).toHaveAttribute('href', 'creatingdeveloperapps.html');
   });
 });
